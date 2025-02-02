@@ -10,12 +10,9 @@ import { Heading } from "./heading";
 import { Input } from "./input";
 import { Loading } from "./loading";
 import { Radio } from "./radio";
-import { Table } from "./table";
-import { Tag } from "./tag";
 
 export default {
   Button,
-  Table,
   Input,
   Heading,
   Card,
@@ -24,7 +21,6 @@ export default {
   Loading,
   Radio,
   Checkbox,
-  Tag,
   Fieldset,
   Accordion,
 } satisfies ThemeComponents;

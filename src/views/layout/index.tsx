@@ -1,4 +1,4 @@
-import { setConfig } from "@/lib/validation";
+import { configureValidationSettings } from "@/lib/validation";
 import { Container, Separator } from "@yamada-ui/react";
 import { FC, ReactNode } from "react";
 import { Header } from "./header";
@@ -6,7 +6,7 @@ import { Navigation } from "./navigation";
 import { Providers } from "./providers";
 
 export const LayoutPage: FC<{ children: ReactNode }> = ({ children }) => {
-  setConfig();
+  configureValidationSettings();
   return (
     <Providers>
       <Header />
