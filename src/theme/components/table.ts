@@ -1,10 +1,9 @@
 import { type ComponentMultiStyle } from "@yamada-ui/react";
-import { type TableProps } from "@yamada-ui/table";
 
 /**
  * Tableコンポーネントのスタイル定義
  */
-export const Table: ComponentMultiStyle<"Table", TableProps> = {
+export const Table: ComponentMultiStyle<"Table"> = {
   baseStyle: {
     th: {
       color: "white",

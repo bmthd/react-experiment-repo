@@ -4,7 +4,7 @@ import { JSONViewer } from "@/ui/dev/json-viewer";
 import { useFormMetadata } from "@conform-to/react";
 import { FC } from "react";
 
-const DebugComponent: FC = () => {
+const FormDebug: FC = () => {
   const form = useFormMetadata();
   return (
     <JSONViewer
@@ -16,4 +16,4 @@ const DebugComponent: FC = () => {
   );
 };
 
-export default DebugComponent;
+export default FormDebug;

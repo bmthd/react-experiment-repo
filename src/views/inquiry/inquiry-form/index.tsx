@@ -1,5 +1,6 @@
 "use client";
 import { Form, TextareaField, TextField } from "@/ui/form";
+import FormDebug from "@/ui/form/debug";
 import { Button, HStack, VStack } from "@yamada-ui/react";
 import { FC, useActionState } from "react";
 import { inquiryFormSchema } from "../schema";
@@ -26,6 +27,7 @@ export const InquiryForm: FC = () => {
               送信
             </Button>
           </HStack>
+          <FormDebug />
         </VStack>
       )}
     </Form>
