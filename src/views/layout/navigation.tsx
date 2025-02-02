@@ -11,7 +11,7 @@ type LinkItem = {
 };
 
 const links = [
-  { label: "お問い合わせフォームの例", href: "/inquiry" },
+  { label: "お問い合わせフォームの例", href: "/inquiry/server" },
   { label: "このサイトは？", href: "/about" },
 ] as const satisfies LinkItem[];
 

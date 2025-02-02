@@ -1,8 +1,8 @@
-import { Card, Container, Heading, Text, VStack } from "@yamada-ui/react";
+import { Card, Container, Heading, Link, Text, VStack } from "@yamada-ui/react";
 import { FC } from "react";
 import { InquiryForm } from "./inquiry-form";
 
-export const InquiryPage: FC = () => {
+export const ClientFormPage: FC = () => {
   return (
     <Container as={Card}>
       <Heading>お問い合わせ</Heading>
@@ -12,6 +12,12 @@ export const InquiryPage: FC = () => {
         <Text>個人開発のため、返答にお時間を頂く場合がありますので予めご了承ください。</Text>
       </VStack>
       <InquiryForm />
+      <Link
+        external
+        href="https://github.com/bmthd/react-experiment-repo/blob/master/src/views/client-form/index.tsx"
+      >
+        コード
+      </Link>
     </Container>
   );
 };
