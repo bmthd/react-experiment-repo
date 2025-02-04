@@ -1,6 +1,6 @@
 "use client";
-
-import { Link, Tab, Tabs } from "@yamada-ui/react";
+import { Tab, Tabs } from "@yamada-ui/react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
