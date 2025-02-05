@@ -21,13 +21,19 @@ export const InquiryForm: FC = () => {
 
   return (
     <Form schema={inquiryFormSchema}>
-      {({ field }) => (
+      {({ form, field }) => (
         <VStack>
           <TextField name={field.name.name} label="お名前" autoComplete="name" />
           <TextField name={field.email.name} label="メールアドレス" autoComplete="email" />
           <TextareaField name={field.message.name} label="お問い合わせ内容" />
           <HStack alignSelf="end">
-            <Button type="button" onClick={handleSend}>
+            <Button
+              type="button"
+              onClick={(e) => {
+                form.validate();
+                handleSend(e);
+              }}
+            >
               送信
             </Button>
           </HStack>

@@ -12,6 +12,7 @@ type LinkItem = {
 const links = [
   { label: "サーバー", href: "/inquiry/server" },
   { label: "クライアント", href: "/inquiry/client" },
+  { label: "プロトタイピング", href: "/inquiry/prototype" },
 ] as const satisfies LinkItem[];
 
 export default ({ children }: { children: ReactNode }) => {

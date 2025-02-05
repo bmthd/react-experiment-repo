@@ -1,18 +1,28 @@
 "use client";
-import { FormProvider, getFormProps, useForm } from "@conform-to/react";
+import {
+  FormMetadata,
+  FormProvider,
+  FormStateInput,
+  getFormProps,
+  useForm,
+} from "@conform-to/react";
 import { getValibotConstraint, parseWithValibot } from "conform-to-valibot";
 import { JSX, ReactNode, type ComponentProps } from "react";
+import * as v from "valibot";
 import { type GenericSchema } from "valibot";
 
-type UseFormReturn<
+interface UseFormReturn<
   TInput extends Record<string, unknown>,
   TOutput extends Record<string, unknown>,
-> = ReturnType<typeof useForm<TInput, TOutput, string[]>>;
+> extends ReturnType<typeof useForm<TInput, TOutput, string[]>> {}
 
-type FormMeta<TInput extends Record<string, unknown>, TOutput extends Record<string, unknown>> = {
-  form: UseFormReturn<TInput, TOutput>[0];
+interface FormMeta<
+  TInput extends Record<string, unknown>,
+  TOutput extends Record<string, unknown>,
+> {
+  form: FormMetadata<TInput, string[]>;
   field: UseFormReturn<TInput, TOutput>[1];
-};
+}
 
 /**
  * デフォルトの挙動を設定
@@ -43,14 +53,15 @@ const useCustomForm = <
   return { form, field };
 };
 
-type FormProps<TInput extends Record<string, unknown>, TOutput extends Record<string, unknown>> = {
+interface FormProps<TInput extends Record<string, unknown>, TOutput extends Record<string, unknown>>
+  extends Omit<
+    ComponentProps<"form">,
+    keyof ReturnType<typeof getFormProps> | "children" | "defaultValue"
+  > {
   schema?: GenericSchema<TInput>;
   options?: Parameters<typeof useForm<TInput>>[0];
   children?: ((props: FormMeta<TInput, TOutput>) => ReactNode) | ReactNode;
-} & Omit<
-  ComponentProps<"form">,
-  keyof ReturnType<typeof getFormProps> | "children" | "defaultValue"
->;
+}
 
 /**
  * Conformの機能を統合したFormコンポーネント
@@ -65,13 +76,14 @@ export const Form = <
   children,
   ...props
 }: FormProps<TInput, TOutput>): JSX.Element => {
-  const { form, field } = useCustomForm(schema ?? ({} as any), options);
+  const { form, field } = useCustomForm(schema ?? (v.object({}) as any), options);
 
   return (
     <FormProvider context={form.context}>
       <form {...props} {...getFormProps(form)}>
         {typeof children === "function" ? children({ form, field }) : children}
       </form>
+      <FormStateInput />
     </FormProvider>
   );
 };
