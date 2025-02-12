@@ -26,10 +26,10 @@ export const SelectField: FC<SelectFieldProps> = ({ name = "", label, onChange, 
         onBlur={blur}
         onFocus={focus}
         {...props}
-        {...() => {
+        {...(() => {
           const { defaultValue: _, ...props } = getSelectProps(fieldMeta, { value: false });
           return props;
-        }}
+        })()}
         key={fieldMeta.key}
       />
     </CustomFormControl>
