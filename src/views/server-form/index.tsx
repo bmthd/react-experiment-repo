@@ -14,7 +14,7 @@ export const InquiryPage: FC = () => {
       <InquiryForm />
       <Link
         external
-        href="https://github.com/bmthd/react-experiment-repo/blob/master/src/views/server-form/index.tsx"
+        href="https://github.com/bmthd/react-experiment-repo/blob/master/src/views/server-form/inquiry-form/index.tsx"
       >
         コード
       </Link>
