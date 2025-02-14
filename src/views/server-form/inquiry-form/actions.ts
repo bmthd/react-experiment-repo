@@ -12,7 +12,7 @@ const sendInquiryMail = async ({ email, name, message }: InquiryFormInput) =>
   sendMailFromAdmin({
     from: email,
     to: adminAddress,
-    subject: "ポイントスプリント お問い合わせフォームからのメッセージ",
+    subject: "実験サイト お問い合わせフォームからのメッセージ",
     text: `メールアドレス: ${email}
     お名前:${name}
     メッセージ: ${message}`,
