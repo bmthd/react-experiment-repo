@@ -18,6 +18,10 @@ export const SelectField: FC<SelectFieldProps> = ({ name = "", label, onChange, 
     },
     [change, onChange],
   );
+  const { defaultValue: _, ...mergedProps } = {
+    ...props,
+    ...getSelectProps(fieldMeta, { value: false }),
+  };
   return (
     <CustomFormControl label={label} {...getFieldErrorProps(fieldMeta)}>
       <Select
@@ -25,11 +29,7 @@ export const SelectField: FC<SelectFieldProps> = ({ name = "", label, onChange, 
         onChange={handleChange}
         onBlur={blur}
         onFocus={focus}
-        {...props}
-        {...(() => {
-          const { defaultValue: _, ...props } = getSelectProps(fieldMeta, { value: false });
-          return props;
-        })()}
+        {...mergedProps}
         key={fieldMeta.key}
       />
     </CustomFormControl>
