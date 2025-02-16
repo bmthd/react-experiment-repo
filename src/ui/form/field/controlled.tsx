@@ -1,6 +1,6 @@
 "use client";
 import { getSelectProps, useField, useInputControl } from "@conform-to/react";
-import { Select, SelectProps } from "@yamada-ui/react";
+import { handlerAll, Select, SelectProps } from "@yamada-ui/react";
 import { useCallback, type FC } from "react";
 import { CustomFormControl } from "./form-control";
 import { type FieldProps } from "./types";
@@ -11,13 +11,9 @@ interface SelectFieldProps extends FieldProps<string>, Omit<SelectProps, "name">
 export const SelectField: FC<SelectFieldProps> = ({ name = "", label, onChange, ...props }) => {
   const [fieldMeta] = useField(name);
   const { value, change, blur, focus } = useInputControl(fieldMeta);
-  const handleChange = useCallback(
-    (value: string) => {
-      change(value);
-      onChange?.(value);
-    },
-    [change, onChange],
-  );
+
+  const handleChange = useCallback(handlerAll(change, onChange), [change, onChange]);
+
   const { defaultValue: _, ...mergedProps } = {
     ...props,
     ...getSelectProps(fieldMeta, { value: false }),
