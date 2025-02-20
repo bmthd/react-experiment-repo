@@ -2,7 +2,7 @@
 import { FieldName, getSelectProps, useField, useInputControl } from "@conform-to/react";
 import { handlerAll, Select, SelectItem, SelectProps } from "@yamada-ui/react";
 import { useCallback, useEffect, useMemo, type FC } from "react";
-import { pipe } from "remeda";
+import * as R from "remeda";
 import { CustomFormControl } from "./form-control";
 import { type FieldProps } from "./types";
 import { getFieldErrorProps } from "./utils";
@@ -54,45 +54,63 @@ export const SelectField: FC<SelectFieldProps> = ({
   );
 };
 
-type DependencySelectFieldProps<
-  T extends Record<string, unknown>,
-  V extends string,
-  D extends FieldName<V, T, string[]>,
-> = SelectFieldProps & {
-  name: FieldName<string, T, string[]>;
-  dependencyFieldName: D;
-  itemsSelector: (value: V | undefined) => SelectItems;
-};
+type DependentSelectFieldProps<
+  Schema extends Record<string, unknown>,
+  Dependent extends FieldName<DependentValue, Schema, string[]>[],
+  DependentValue extends { [K in Dependent[number]]: Schema[K] },
+> = FieldProps<string> &
+  Omit<SelectProps, "name" | "items"> & {
+    name: FieldName<string, Schema, string[]>;
+    dependentFieldNames: Dependent;
+    itemsSelector: (value: DependentValue) => SelectItems;
+  };
 
 /**
  * 別の入力欄の値に依存して選択肢が変わるSelect入力欄
  */
-export const DependencySelectField = <
-  T extends Record<string, unknown>,
-  D extends FieldName<V, T, string[]>,
-  V extends string,
+export const DependentSelectField = <
+  Schema extends Record<string, unknown>,
+  const Dependent extends FieldName<DependentValue, Schema, string[]>[],
+  DependentValue extends { [K in Dependent[number]]: Schema[K] },
 >({
-  name = "",
+  name,
   label,
   helperMessage,
   onChange,
-  dependencyFieldName,
+  dependentFieldNames,
   itemsSelector,
   ...props
-}: DependencySelectFieldProps<T, V, D>) => {
-  const [field, form] = useField(name);
-  const [dependencyField] = useField(dependencyFieldName);
+}: DependentSelectFieldProps<Schema, Dependent, DependentValue>) => {
+  const [field, form] = useField<string, Schema, string[]>(name);
   const items = useMemo<SelectItem[] | undefined>(
-    () => pipe(dependencyField.value, itemsSelector, convertItems),
-    [dependencyField.value],
+    () =>
+      R.pipe(
+        dependentFieldNames,
+        R.mapToObj((name) => [name, form.value?.[name]]),
+        R.conditional(
+          [
+            (v) => R.values(v).some(R.isNonNullish),
+            (v) =>
+              R.pipe(
+                // @ts-expect-error 実行時と、入口と出口の型が問題ないのでOK
+                v,
+                itemsSelector,
+                convertItems,
+              ),
+          ],
+          R.conditional.defaultCase(() => [] satisfies SelectItem[]),
+        ),
+      ),
+    dependentFieldNames.map((name) => form.value?.[name]),
   );
+
   const { value, change, blur, focus } = useInputControl(field);
 
   const handleChange = useCallback(handlerAll(change, onChange), [change, onChange]);
 
   useEffect(() => {
     form.reset({ name });
-  }, [items, handleChange]);
+  }, [items]);
 
   const { defaultValue: _, ...mergedProps } = {
     ...props,
@@ -107,7 +125,7 @@ export const DependencySelectField = <
         onFocus={focus}
         {...mergedProps}
         items={items}
-        disabled={items.length === 0}
+        disabled={items?.length === 0}
         key={field.key}
       />
     </CustomFormControl>

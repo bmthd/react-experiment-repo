@@ -36,5 +36,6 @@
   },
   "[jsonc]": {
     "editor.defaultFormatter": "biomejs.biome"
-  }
+  },
+  "cSpell.words": ["picklist", "remeda", "valibot"]
 }

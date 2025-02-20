@@ -13,6 +13,7 @@ const links = [
   { label: "サーバー", href: "/inquiry/server" },
   { label: "クライアント", href: "/inquiry/client" },
   { label: "プロトタイピング", href: "/inquiry/prototype" },
+  { label: "依存関係のあるフォーム", href: "/inquiry/dependent" },
 ] as const satisfies LinkItem[];
 
 export default ({ children }: { children: ReactNode }) => {
