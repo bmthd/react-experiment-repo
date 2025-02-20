@@ -47,7 +47,6 @@ export const DependsForm: FC = () => {
               name={field.grade.name}
               dependentFieldNames={["manufacturer", "model"]}
               itemsSelector={({ manufacturer, model }) => {
-                if (!v.is(v.picklist(R.keys(car)), manufacturer)) return [];
                 const models = car[manufacturer];
                 if (!v.is(v.picklist(R.keys(models)), model)) return [];
                 return models[model as keyof typeof models];
