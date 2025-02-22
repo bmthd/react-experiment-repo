@@ -28,7 +28,6 @@ export const Button: ComponentStyle<ButtonProps> = {
     },
   },
   defaultProps: {
-    variant: "primary",
-    fontSize: "0.9rem",
+    colorScheme: "primary",
   },
 };

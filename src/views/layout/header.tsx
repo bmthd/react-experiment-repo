@@ -1,13 +1,13 @@
-import { Container, Heading } from "@yamada-ui/react";
+import { Heading, HStack } from "@yamada-ui/react";
 import Link from "next/link";
 import { FC } from "react";
 
 export const Header: FC = () => {
   return (
-    <Container as="header" bg="white">
+    <HStack as="header" bg="white" p={4}>
       <Link href="/">
-        <Heading variant="h1">Header</Heading>
+        <Heading>技術検証用サンプルサイト</Heading>
       </Link>
-    </Container>
+    </HStack>
   );
 };

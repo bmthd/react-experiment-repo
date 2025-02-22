@@ -54,7 +54,11 @@ export const SelectField: FC<SelectFieldProps> = ({
   );
 };
 
-export type ItemsSelector<T> = (value: T) => SelectItems;
+/**
+ * 別の入力欄の値を元に選択肢を生成する関数
+ * @param value - 依存する値
+ */
+export type ItemsSelector<T extends Record<string, unknown>> = (value: T) => SelectItems;
 
 type DependentSelectFieldProps<
   Schema extends Record<string, unknown>,
@@ -84,7 +88,7 @@ export const DependentSelectField = <
   ...props
 }: DependentSelectFieldProps<Schema, Dependent, DependentValue>) => {
   const [field, form] = useField<string, Schema, string[]>(name);
-  const items = useMemo<SelectItem[] | undefined>(
+  const items = useMemo<SelectItem[]>(
     () =>
       R.pipe(
         dependentFieldNames,
@@ -127,7 +131,7 @@ export const DependentSelectField = <
         onFocus={focus}
         {...mergedProps}
         items={items}
-        disabled={items?.length === 0}
+        disabled={items.length === 0}
         key={field.key}
       />
     </CustomFormControl>
