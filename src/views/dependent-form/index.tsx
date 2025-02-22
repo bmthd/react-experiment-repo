@@ -1,40 +1,43 @@
 "use client";
 
-import { DependentSelectField, Form, ItemsSelector, SelectField } from "@/ui/form";
+import { DependentSelectField, Form, ItemsSelector, ResetButton, SelectField } from "@/ui/form";
 import FormDebug from "@/ui/form/debug";
 import { Button, Card, Container, Heading, HStack, Link } from "@yamada-ui/react";
 import { FC } from "react";
 import * as R from "remeda";
 import * as v from "valibot";
-import car from "./car.json";
+import carList from "./car-list.json";
+
+type CarList = typeof carList;
+
+type Manufacturer = keyof CarList;
+
+const manufacturers = R.keys(carList);
+
+const hasModel = <T extends Manufacturer>(manufacturer: T, input: unknown) =>
+  v.is(v.picklist(R.keys(carList[manufacturer])), input);
 
 const schema = v.pipe(
   v.object({
-    manufacturer: v.picklist(R.keys(car)),
+    manufacturer: v.picklist(manufacturers),
     model: v.string(),
     grade: v.string(),
   }),
   v.check((input) => {
-    if (!v.is(v.picklist(R.keys(car)), input.manufacturer)) {
-      return false;
-    }
-    const models = car[input.manufacturer];
-    if (!v.is(v.picklist(R.keys(models)), input.model)) {
-      return false;
-    }
+    if (!hasModel(input.manufacturer, input.model)) return false;
     return true;
   }),
 );
 
-const manufacturers = R.keys(car);
-const modelItemsSelector: ItemsSelector<{ manufacturer: keyof typeof car }> = ({ manufacturer }) =>
-  R.keys(car[manufacturer]);
-const gradeItemsSelector: ItemsSelector<{ manufacturer: keyof typeof car; model: string }> = ({
+const modelItemsSelector: ItemsSelector<{ manufacturer: Manufacturer }> = ({ manufacturer }) =>
+  R.keys(carList[manufacturer]);
+
+const gradeItemsSelector: ItemsSelector<{ manufacturer: Manufacturer; model: string }> = ({
   manufacturer,
   model,
 }) => {
-  const models = car[manufacturer];
-  if (!v.is(v.picklist(R.keys(models)), model)) return [];
+  if (!hasModel(manufacturer, model)) return [];
+  const models = carList[manufacturer];
   return models[model as keyof typeof models];
 };
 
@@ -43,7 +46,7 @@ export const DependsForm: FC = () => {
     <Container as={Card}>
       <Heading>依存関係のあるフォーム</Heading>
       <Form schema={schema} display="contents">
-        {({ form, field }) => (
+        {({ field }) => (
           <>
             <SelectField label="メーカー" name={field.manufacturer.name} items={manufacturers} />
             <DependentSelectField
@@ -59,9 +62,7 @@ export const DependsForm: FC = () => {
               itemsSelector={gradeItemsSelector}
             />
             <HStack justifyContent="space-between">
-              <Button type="reset" colorScheme="yellow" onClick={() => form.reset()}>
-                リセット
-              </Button>
+              <ResetButton />
               <Button>送信</Button>
             </HStack>
             <FormDebug />

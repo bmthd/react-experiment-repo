@@ -91,4 +91,5 @@ export const Form = <
 };
 
 export * from "./field";
+export * from "./parts";
 export type { FormState } from "./types";
