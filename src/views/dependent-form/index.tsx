@@ -1,6 +1,6 @@
 "use client";
 
-import { DependentSelectField, Form, SelectField } from "@/ui/form";
+import { DependentSelectField, Form, ItemsSelector, SelectField } from "@/ui/form";
 import FormDebug from "@/ui/form/debug";
 import { Button, Card, Container, Heading, HStack, Link } from "@yamada-ui/react";
 import { FC } from "react";
@@ -27,6 +27,16 @@ const schema = v.pipe(
 );
 
 const manufacturers = R.keys(car);
+const modelItemsSelector: ItemsSelector<{ manufacturer: keyof typeof car }> = ({ manufacturer }) =>
+  R.keys(car[manufacturer]);
+const gradeItemsSelector: ItemsSelector<{ manufacturer: keyof typeof car; model: string }> = ({
+  manufacturer,
+  model,
+}) => {
+  const models = car[manufacturer];
+  if (!v.is(v.picklist(R.keys(models)), model)) return [];
+  return models[model as keyof typeof models];
+};
 
 export const DependsForm: FC = () => {
   return (
@@ -40,17 +50,13 @@ export const DependsForm: FC = () => {
               label="車種"
               name={field.model.name}
               dependentFieldNames={["manufacturer"]}
-              itemsSelector={({ manufacturer }) => R.keys(car[manufacturer])}
+              itemsSelector={modelItemsSelector}
             />
             <DependentSelectField
               label="グレード"
               name={field.grade.name}
               dependentFieldNames={["manufacturer", "model"]}
-              itemsSelector={({ manufacturer, model }) => {
-                const models = car[manufacturer];
-                if (!v.is(v.picklist(R.keys(models)), model)) return [];
-                return models[model as keyof typeof models];
-              }}
+              itemsSelector={gradeItemsSelector}
             />
             <HStack justifyContent="space-between">
               <Button type="reset" colorScheme="yellow" onClick={() => form.reset()}>

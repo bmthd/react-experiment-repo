@@ -54,6 +54,8 @@ export const SelectField: FC<SelectFieldProps> = ({
   );
 };
 
+export type ItemsSelector<T> = (value: T) => SelectItems;
+
 type DependentSelectFieldProps<
   Schema extends Record<string, unknown>,
   Dependent extends FieldName<DependentValue, Schema, string[]>[],
@@ -62,7 +64,7 @@ type DependentSelectFieldProps<
   Omit<SelectProps, "name" | "items"> & {
     name: FieldName<string, Schema, string[]>;
     dependentFieldNames: Dependent;
-    itemsSelector: (value: DependentValue) => SelectItems;
+    itemsSelector: ItemsSelector<DependentValue>;
   };
 
 /**
