@@ -1,0 +1,19 @@
+{
+  "conform": {
+    "inquiry": {
+      "title": "Contact",
+      "description": {
+        "1": "We accept inquiries about this site here.",
+        "2": "Please feel free to send us requests for additional functions, bug information, etc.",
+        "3": "Please note that we may take some time to reply due to personal development."
+      },
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Submit"
+    }
+  },
+  "shared": {
+    "code": "Code"
+  }
+}
