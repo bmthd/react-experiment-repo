@@ -4,7 +4,7 @@ import { InquiryForm } from "./inquiry-form";
 
 export const ClientFormPage: FC = () => {
   return (
-    <Container as={Card}>
+    <Container as={Card} roundedTop={0}>
       <Heading>お問い合わせ</Heading>
       <VStack>
         <Text>こちらでは当サイトに関するお問い合わせを受け付けています。</Text>

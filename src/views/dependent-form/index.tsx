@@ -43,7 +43,7 @@ const gradeItemsSelector: ItemsSelector<{ manufacturer: Manufacturer; model: str
 
 export const DependsForm: FC = () => {
   return (
-    <Container as={Card}>
+    <Container as={Card} roundedTop={0}>
       <Heading>依存関係のあるフォーム</Heading>
       <Form schema={schema} display="contents">
         {({ field }) => (
