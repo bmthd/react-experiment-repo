@@ -1,9 +1,26 @@
 "use client";
-import { FieldName, getSelectProps, useField, useInputControl } from "@conform-to/react";
-import { handlerAll, Select, SelectItem, SelectProps } from "@yamada-ui/react";
-import { useCallback, useEffect, useMemo, type FC } from "react";
+import {
+  FieldName,
+  getCollectionProps,
+  getSelectProps,
+  useField,
+  useInputControl,
+} from "@conform-to/react";
+import {
+  handlerAll,
+  HStack,
+  Radio,
+  RadioGroup,
+  RadioProps,
+  Select,
+  SelectItem,
+  SelectProps,
+  ui,
+} from "@yamada-ui/react";
+import { ComponentProps, ReactNode, useCallback, useEffect, useMemo, type FC } from "react";
 import * as R from "remeda";
 import { CustomFormControl } from "./form-control";
+import { HiddenField } from "./primitive";
 import { type FieldProps } from "./types";
 import { getFieldErrorProps } from "./utils";
 
@@ -134,6 +151,56 @@ export const DependentSelectField = <
         disabled={items.length === 0}
         key={field.key}
       />
+    </CustomFormControl>
+  );
+};
+
+interface RadioGroupFieldProps
+  extends FieldProps<string>,
+    Omit<ComponentProps<typeof RadioGroup>, "name" | "items"> {
+  radioProps?: Omit<RadioProps, "name">;
+  items: SelectItems;
+  render?: ({ label, checked }: { label: string; checked: boolean }) => ReactNode;
+}
+
+export const RadioGroupField: FC<RadioGroupFieldProps> = ({
+  name = "",
+  label,
+  helperMessage,
+  radioProps,
+  items,
+  render,
+  ...props
+}) => {
+  const [fieldMeta] = useField(name);
+  const fields = getCollectionProps(fieldMeta, {
+    type: "radio",
+    options: items.map((item) => (typeof item === "string" ? item : item.value)),
+  });
+  const labels = items.map((item) => (typeof item === "string" ? item : item.label));
+
+  return (
+    <CustomFormControl {...{ label, helperMessage }} {...getFieldErrorProps(fieldMeta)}>
+      <RadioGroup defaultValue={fieldMeta?.initialValue} {...props}>
+        <HStack>
+          {fields.map((field, index) =>
+            render ? (
+              (() => {
+                const radioId = `${field.key}-radio`;
+                const checked = fieldMeta.value === field.value;
+                return (
+                  <ui.label htmlFor={radioId}>
+                    <HiddenField {...field} {...radioProps} key={field.key} />
+                    {render({ label: labels[index]!, checked })}
+                  </ui.label>
+                );
+              })()
+            ) : (
+              <Radio {...field} label={labels[index]} {...radioProps} key={field.key} />
+            ),
+          )}
+        </HStack>
+      </RadioGroup>
     </CustomFormControl>
   );
 };

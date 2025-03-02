@@ -1,4 +1,4 @@
-import { FieldMetadata, useFormMetadata } from "@conform-to/react";
+import { DefaultValue, FieldMetadata, useFormMetadata } from "@conform-to/react";
 import { Button, ButtonProps } from "@yamada-ui/react";
 import { FC, useCallback } from "react";
 
@@ -21,15 +21,19 @@ export const ResetButton: FC<ButtonProps> = ({ children = "リセット", ...pro
 /**
  * 配列の要素を追加するボタン
  */
-export const AddArrayItemButton: FC<
-  {
-    /** Conformの配列metadata */ field: FieldMetadata<unknown[]>;
-  } & ButtonProps
-> = ({ field, children = "追加", ...props }) => {
+export const AddArrayItemButton = <T,>({
+  field,
+  children = "追加",
+  defaultValue,
+  ...props
+}: {
+  /** Conformの配列metadata */ field: FieldMetadata<T[]>;
+  defaultValue?: DefaultValue<T>;
+} & Omit<ButtonProps, "defaultValue">) => {
   const form = useFormMetadata();
   const handleAdd = useCallback(() => {
-    form.insert({ name: field.name });
-  }, [form, field.name]);
+    form.insert({ name: field.name, defaultValue });
+  }, [form, field.name, defaultValue]);
   return (
     <Button onClick={handleAdd} {...props}>
       {children}
