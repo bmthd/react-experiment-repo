@@ -48,9 +48,9 @@ const rulesetSchema: v.GenericSchema<Ruleset> = v.object({
   condition: v.union([v.literal("and"), v.literal("or")]),
   rules: v.array(
     v.object({
-      subject: v.string(),
+      subject: v.nonOptional(v.string()),
       operator: v.union([v.literal("eq"), v.literal("ne")]),
-      object: v.string(),
+      object: v.nonOptional(v.string()),
     }),
   ),
   nested: v.array(v.lazy(() => rulesetSchema)),
@@ -92,7 +92,7 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset>["getFieldset"]
           {({ field, remove, copy }) => (
             <ConformFieldset key={field.key} field={field}>
               {(field) => (
-                <HStack>
+                <HStack alignItems="start">
                   <TextField name={field.subject.name} />
                   <RadioGroupField
                     name={field.operator.name}
@@ -150,7 +150,11 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset>["getFieldset"]
         </FieldArray>
         <AddArrayItemButton
           field={field.nested}
-          defaultValue={{ condition: "and" }}
+          defaultValue={{
+            condition: "and",
+            rules: [{ subject: "", operator: "eq", object: "" }],
+            nested: [],
+          }}
           variant="ghost"
           startIcon={<CircleIcon />}
         >
