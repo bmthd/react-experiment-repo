@@ -12,21 +12,41 @@ type CarList = typeof carList;
 
 type Manufacturer = keyof CarList;
 
+type Model<T extends Manufacturer> = keyof CarList[T];
+
 const manufacturers = R.keys(carList);
 
+const models = <T extends Manufacturer>(manufacturer: T) => R.keys(carList[manufacturer]);
+
+const grades = <T extends Manufacturer>(manufacturer: T, model: Model<T>) =>
+  carList[manufacturer][model] as string[];
+
 const hasModel = <T extends Manufacturer>(manufacturer: T, input: unknown) =>
-  v.is(v.picklist(R.keys(carList[manufacturer])), input);
+  v.is(v.picklist(models(manufacturer)), input);
+
+const hasGrade = <T extends Manufacturer>(manufacturer: T, model: Model<T>, input: unknown) =>
+  v.is(v.picklist(grades(manufacturer, model)), input);
 
 const schema = v.pipe(
   v.object({
-    manufacturer: v.picklist(manufacturers),
-    model: v.string(),
-    grade: v.string(),
+    manufacturer: v.nonOptional(v.picklist(manufacturers)),
+    model: v.nonOptional(v.string()),
+    grade: v.nonOptional(v.string()),
   }),
-  v.check((input) => {
-    if (!hasModel(input.manufacturer, input.model)) return false;
-    return true;
-  }),
+  v.forward(
+    v.check(
+      (input) => hasModel(input.manufacturer, input.model),
+      "選択肢に存在しないモデルが選ばれました。",
+    ),
+    ["model"],
+  ),
+  v.forward(
+    v.check(
+      (input) => hasGrade(input.manufacturer, input.model as never, input.grade),
+      "選択肢に存在しないグレードが選ばれました。",
+    ),
+    ["grade"],
+  ),
 );
 
 const modelItemsSelector: ItemsSelector<{ manufacturer: Manufacturer }> = ({ manufacturer }) =>
