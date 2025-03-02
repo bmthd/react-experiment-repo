@@ -16,15 +16,15 @@ import {
   SelectItem,
   SelectProps,
   ui,
+  VisuallyHidden,
 } from "@yamada-ui/react";
 import { ComponentProps, ReactNode, useCallback, useEffect, useMemo, type FC } from "react";
 import * as R from "remeda";
 import { CustomFormControl } from "./form-control";
-import { HiddenField } from "./primitive";
 import { type FieldProps } from "./types";
 import { getFieldErrorProps } from "./utils";
 
-type SelectItems = ReadonlyArray<string> | ReadonlyArray<{ label: string; value: string }>;
+type SelectItems = ReadonlyArray<string> | ReadonlyArray<{ label: ReactNode; value: string }>;
 
 const convertItems = (items: SelectItems): SelectItem[] =>
   items.map((item) => {
@@ -158,9 +158,12 @@ export const DependentSelectField = <
 interface RadioGroupFieldProps
   extends FieldProps<string>,
     Omit<ComponentProps<typeof RadioGroup>, "name" | "items"> {
+  /** radioのstyleProps */
   radioProps?: Omit<RadioProps, "name">;
+  /** radio groupの選択肢 */
   items: SelectItems;
-  render?: ({ label, checked }: { label: string; checked: boolean }) => ReactNode;
+  /** radioとして描画したいコンポーネントをカスタマイズする場合のrender関数 */
+  render?: ({ label, checked }: { label: ReactNode; checked: boolean }) => ReactNode;
 }
 
 export const RadioGroupField: FC<RadioGroupFieldProps> = ({
@@ -185,16 +188,10 @@ export const RadioGroupField: FC<RadioGroupFieldProps> = ({
         <HStack>
           {fields.map((field, index) =>
             render ? (
-              (() => {
-                const radioId = `${field.key}-radio`;
-                const checked = fieldMeta.value === field.value;
-                return (
-                  <ui.label htmlFor={radioId}>
-                    <HiddenField {...field} {...radioProps} key={field.key} />
-                    {render({ label: labels[index]!, checked })}
-                  </ui.label>
-                );
-              })()
+              <ui.label htmlFor={field.id} key={field.key}>
+                <VisuallyHidden as="input" {...field} {...radioProps} key={field.key} />
+                {render({ label: labels[index], checked: fieldMeta.value === field.value })}
+              </ui.label>
             ) : (
               <Radio {...field} label={labels[index]} {...radioProps} key={field.key} />
             ),

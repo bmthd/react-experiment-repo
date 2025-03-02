@@ -1,9 +1,25 @@
 "use client";
 
-import { AddArrayItemButton, FieldArray, Form, RadioGroupField, TextField } from "@/ui/form";
+import {
+  AddArrayItemButton,
+  FieldArray,
+  Form,
+  RadioGroupField,
+  ResetButton,
+  TextField,
+} from "@/ui/form";
+import FormDebug from "@/ui/form/debug";
 import { ConformFieldset } from "@/ui/form/fieldset";
 import { FieldMetadata } from "@conform-to/react";
-import { CheckIcon, CircleIcon, CopyIcon, TrashIcon, UsersIcon } from "@yamada-ui/lucide";
+import {
+  CheckIcon,
+  CircleIcon,
+  CopyIcon,
+  EqualIcon,
+  EqualNotIcon,
+  TrashIcon,
+  UsersIcon,
+} from "@yamada-ui/lucide";
 import {
   Button,
   Card,
@@ -40,6 +56,12 @@ const rulesetSchema: v.GenericSchema<Ruleset> = v.object({
   nested: v.array(v.lazy(() => rulesetSchema)),
 });
 
+const defaultValue: Partial<Ruleset> = {
+  condition: "and",
+  rules: [{ subject: "", operator: "eq", object: "" }],
+  nested: [],
+};
+
 const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset>["getFieldset"]> }> = ({
   field,
 }) => {
@@ -53,6 +75,16 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset>["getFieldset"]
             { value: "and", label: "AND" },
             { value: "or", label: "OR" },
           ]}
+          render={({ label, checked }) => (
+            <Button
+              as="div"
+              variant={checked ? "solid" : "ghost"}
+              colorScheme={checked ? "blackAlpha" : "gray"}
+              startIcon={checked ? <CheckIcon /> : <Icon />}
+            >
+              {label}
+            </Button>
+          )}
         />
       </CardHeader>
       <CardBody>
@@ -65,11 +97,13 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset>["getFieldset"]
                   <RadioGroupField
                     name={field.operator.name}
                     items={[
-                      { value: "eq", label: "=" },
-                      { value: "ne", label: "≠" },
+                      { value: "eq", label: <EqualIcon /> },
+                      { value: "ne", label: <EqualNotIcon /> },
                     ]}
                     render={({ label, checked }) => (
                       <Button
+                        as="div"
+                        variant={checked ? "solid" : "ghost"}
                         colorScheme={checked ? "blackAlpha" : "gray"}
                         startIcon={checked ? <CheckIcon /> : <Icon />}
                       >
@@ -105,8 +139,8 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset>["getFieldset"]
         </AddArrayItemButton>
         <FieldArray field={field.nested}>
           {({ field, copy, remove }) => (
-            <HStack alignItems="start">
-              <ConformFieldset key={field.key} field={field}>
+            <HStack key={field.key} alignItems="start">
+              <ConformFieldset field={field}>
                 {(field) => <RulesetField field={field} />}
               </ConformFieldset>
               <IconButton onClick={copy} icon={<CopyIcon />} aria-label="複製" variant="ghost" />
@@ -131,7 +165,16 @@ export const RecursiveForm: FC = () => {
   return (
     <Container>
       <Heading>再帰的なフォーム</Heading>
-      <Form schema={rulesetSchema}>{({ field }) => <RulesetField field={field} />}</Form>
+      <Form schema={rulesetSchema} options={{ defaultValue }}>
+        {({ field }) => (
+          <>
+            <RulesetField field={field} />
+            <Button type="submit">送信</Button>
+            <ResetButton />
+            <FormDebug />
+          </>
+        )}
+      </Form>
     </Container>
   );
 };
