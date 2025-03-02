@@ -1,1 +1,1 @@
-export { ResetButton } from "./reset-button";
+export * from "./operation-button";

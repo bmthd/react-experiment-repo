@@ -1,0 +1,58 @@
+import { FieldMetadata, useFormMetadata } from "@conform-to/react";
+import { Button, ButtonProps } from "@yamada-ui/react";
+import { FC, useCallback } from "react";
+
+/**
+ * Formの値をリセットするボタン
+ */
+export const ResetButton: FC<ButtonProps> = ({ children = "リセット", ...props }) => {
+  const form = useFormMetadata();
+  const isPristine = !form.dirty;
+  const handleReset = useCallback(() => {
+    form.reset();
+  }, [form]);
+  return (
+    <Button onClick={handleReset} disabled={isPristine} {...props}>
+      {children}
+    </Button>
+  );
+};
+
+/**
+ * 配列の要素を追加するボタン
+ */
+export const AddArrayItemButton: FC<
+  {
+    /** Conformの配列metadata */ field: FieldMetadata<unknown[]>;
+  } & ButtonProps
+> = ({ field, children = "追加", ...props }) => {
+  const form = useFormMetadata();
+  const handleAdd = useCallback(() => {
+    form.insert({ name: field.name });
+  }, [form, field.name]);
+  return (
+    <Button onClick={handleAdd} {...props}>
+      {children}
+    </Button>
+  );
+};
+
+/**
+ * 配列の要素を削除するボタン
+ */
+export const RemoveArrayItemButton: FC<
+  {
+    /** Conformの配列metadata */ field: FieldMetadata<unknown[]>;
+    /** 削除する行番号 */ index: number;
+  } & ButtonProps
+> = ({ field, index, children = "削除", ...props }) => {
+  const form = useFormMetadata();
+  const handleRemove = useCallback(() => {
+    form.remove({ name: field.name, index });
+  }, [form, field.name, index]);
+  return (
+    <Button onClick={handleRemove} {...props}>
+      {children}
+    </Button>
+  );
+};
