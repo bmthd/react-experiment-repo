@@ -61,7 +61,7 @@ interface FormProps<TInput extends Record<string, unknown>, TOutput extends Reco
     >,
     UIProps {
   schema?: GenericSchema<TInput>;
-  options?: Parameters<typeof useForm<TInput>>[0];
+  options?: NoInfer<Parameters<typeof useForm<TInput>>[0]>;
   children?: ((props: FormMeta<TInput, TOutput>) => ReactNode) | ReactNode;
 }
 

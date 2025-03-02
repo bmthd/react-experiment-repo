@@ -1,3 +1,3 @@
-import { RecursiveForm } from "@/views/recursive-form";
+import { RecursiveFormPage } from "@/views/recursive-form";
 
-export default RecursiveForm;
+export default RecursiveFormPage;

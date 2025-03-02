@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "name": "山田 太郎",
+    "jobTitle": "エンジニア",
+    "department": "ソフトウェア開発",
+    "position": "リードエンジニア",
+    "office": "東京本社",
+    "employmentType": "正社員"
+  },
+  {
+    "id": 2,
+    "name": "佐藤 花子",
+    "jobTitle": "エンジニア",
+    "department": "フロントエンド開発",
+    "position": "チームリーダー",
+    "office": "西日本支社",
+    "employmentType": "契約社員"
+  },
+  {
+    "id": 3,
+    "name": "鈴木 次郎",
+    "jobTitle": "デザイナー",
+    "department": "UI/UXデザイン",
+    "position": "デザイナー",
+    "office": "関西支社",
+    "employmentType": "派遣社員"
+  },
+  {
+    "id": 4,
+    "name": "高橋 玲奈",
+    "jobTitle": "エンジニア",
+    "department": "バックエンド開発",
+    "position": "ソフトウェアエンジニア",
+    "office": "東京本社",
+    "employmentType": "正社員"
+  },
+  {
+    "id": 5,
+    "name": "井上 健",
+    "jobTitle": "プロダクトマネージャー",
+    "department": "プロダクト管理",
+    "position": "マネージャー",
+    "office": "国内支社",
+    "employmentType": "正社員"
+  },
+  {
+    "id": 6,
+    "name": "田中 優子",
+    "jobTitle": "エンジニア",
+    "department": "フロントエンド開発",
+    "position": "ソフトウェアエンジニア",
+    "office": "小売店舗",
+    "employmentType": "契約社員"
+  },
+  {
+    "id": 7,
+    "name": "中村 翔",
+    "jobTitle": "エンジニア",
+    "department": "データサイエンス",
+    "position": "データサイエンティスト",
+    "office": "東京本社",
+    "employmentType": "フリーランス"
+  },
+  {
+    "id": 8,
+    "name": "松本 優",
+    "jobTitle": "マーケティング",
+    "department": "マーケティング戦略",
+    "position": "マーケター",
+    "office": "倉庫",
+    "employmentType": "アルバイト"
+  },
+  {
+    "id": 9,
+    "name": "小林 陽",
+    "jobTitle": "エンジニア",
+    "department": "ソフトウェア開発",
+    "position": "ソフトウェアエンジニア",
+    "office": "東京本社",
+    "employmentType": "正社員"
+  },
+  {
+    "id": 10,
+    "name": "村上 誠",
+    "jobTitle": "営業",
+    "department": "法人営業",
+    "position": "営業担当",
+    "office": "西日本支社",
+    "employmentType": "正社員"
+  },
+  {
+    "id": 11,
+    "name": "藤本 明",
+    "jobTitle": "エンジニア",
+    "department": "モバイルアプリ開発",
+    "position": "モバイルエンジニア",
+    "office": "東京本社",
+    "employmentType": "正社員"
+  },
+  {
+    "id": 12,
+    "name": "石川 さら",
+    "jobTitle": "人事",
+    "department": "人事部",
+    "position": "人事スペシャリスト",
+    "office": "関東支社",
+    "employmentType": "正社員"
+  },
+  {
+    "id": 13,
+    "name": "武田 陸",
+    "jobTitle": "エンジニア",
+    "department": "バックエンド開発",
+    "position": "ソフトウェアエンジニア",
+    "office": "関西支社",
+    "employmentType": "契約社員"
+  },
+  {
+    "id": 14,
+    "name": "星野 のあ",
+    "jobTitle": "デザイナー",
+    "department": "グラフィックデザイン",
+    "position": "グラフィックデザイナー",
+    "office": "東京本社",
+    "employmentType": "アルバイト"
+  },
+  {
+    "id": 15,
+    "name": "河合 蒼太",
+    "jobTitle": "エンジニア",
+    "department": "クラウドコンピューティング",
+    "position": "クラウドエンジニア",
+    "office": "西日本支社",
+    "employmentType": "正社員"
+  },
+  {
+    "id": 16,
+    "name": "西田 美香",
+    "jobTitle": "マーケティング",
+    "department": "デジタルマーケティング",
+    "position": "SEOスペシャリスト",
+    "office": "オンライン事業部",
+    "employmentType": "フリーランス"
+  },
+  {
+    "id": 17,
+    "name": "小野 大輝",
+    "jobTitle": "営業",
+    "department": "小売営業",
+    "position": "販売員",
+    "office": "小売店舗",
+    "employmentType": "アルバイト"
+  },
+  {
+    "id": 18,
+    "name": "相沢 遥",
+    "jobTitle": "サポート",
+    "department": "カスタマーサポート",
+    "position": "サポート担当",
+    "office": "コールセンター",
+    "employmentType": "契約社員"
+  },
+  {
+    "id": 19,
+    "name": "坂本 涼",
+    "jobTitle": "エンジニア",
+    "department": "DevOps",
+    "position": "DevOpsエンジニア",
+    "office": "東京本社",
+    "employmentType": "正社員"
+  },
+  {
+    "id": 20,
+    "name": "倉田 七海",
+    "jobTitle": "財務",
+    "department": "経理",
+    "position": "経理担当",
+    "office": "財務本部",
+    "employmentType": "正社員"
+  }
+]
