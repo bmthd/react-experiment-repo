@@ -110,19 +110,16 @@ export const DependentSelectField = <
       R.pipe(
         dependentFieldNames,
         R.mapToObj((name) => [name, form.value?.[name]]),
-        R.conditional(
-          [
-            (v) => R.values(v).some(R.isNonNullish),
-            (v) =>
-              R.pipe(
-                // @ts-expect-error 実行時と、入口と出口の型が問題ないのでOK
-                v,
-                itemsSelector,
-                convertItems,
-              ),
-          ],
-          R.conditional.defaultCase(() => [] satisfies SelectItem[]),
-        ),
+        R.when((v) => R.values(v).some(R.isNonNullish), {
+          onTrue: (v) =>
+            R.pipe(
+              // @ts-expect-error 実行時と、入口と出口の型が問題ないのでOK
+              v,
+              itemsSelector,
+              convertItems,
+            ),
+          onFalse: () => [],
+        }),
       ),
     dependentFieldNames.map((name) => form.value?.[name]),
   );
