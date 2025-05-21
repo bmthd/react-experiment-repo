@@ -61,9 +61,8 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset, Ruleset>["getF
   const subjects = use(SubjectContext);
   const [objects, setObjects] = useState<string[]>([]);
 
-  const handleSubjectChange = useCallback(async (subject: Subject) => {
-    const fetchedObjects = await getObjects(subject);
-    setObjects(fetchedObjects);
+  const handleSubjectChange = useCallback((subject: Subject) => {
+    void getObjects(subject).then(setObjects);
   }, []);
 
   return (
@@ -97,7 +96,7 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset, Ruleset>["getF
                   <SelectField
                     name={field.subject.name}
                     items={subjects}
-                    onChange={handleSubjectChange as any}
+                    onChange={handleSubjectChange as (subject: string) => void}
                   />
                   <SelectField
                     name={field.operator.name}
