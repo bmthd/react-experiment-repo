@@ -9,7 +9,7 @@ import {
   SelectField,
 } from "@/ui/form";
 import FormDebug from "@/ui/form/debug";
-import { ConformFieldset } from "@/ui/form/fieldset";
+import { FieldObject } from "@/ui/form/fieldset";
 import { DefaultValue, FieldMetadata } from "@conform-to/react";
 import {
   CheckIcon,
@@ -90,8 +90,8 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset, Ruleset>["getF
       <CardBody>
         <FieldArray field={field.rules}>
           {({ field, remove, copy }) => (
-            <ConformFieldset key={field.key} field={field}>
-              {(field) => (
+            <FieldObject key={field.key} field={field}>
+              {({ field }) => (
                 <HStack alignItems="start">
                   <SelectField
                     name={field.subject.name}
@@ -120,7 +120,7 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset, Ruleset>["getF
                   />
                 </HStack>
               )}
-            </ConformFieldset>
+            </FieldObject>
           )}
         </FieldArray>
         <AddArrayItemButton
@@ -134,9 +134,9 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset, Ruleset>["getF
         <FieldArray field={field.nested}>
           {({ field, copy, remove }) => (
             <HStack key={field.key} alignItems="start">
-              <ConformFieldset field={field}>
-                {(field) => <RulesetField field={field} />}
-              </ConformFieldset>
+              <FieldObject field={field}>
+                {({ field }) => <RulesetField field={field} />}
+              </FieldObject>
               <IconButton onClick={copy} icon={<CopyIcon />} aria-label="複製" variant="ghost" />
               <IconButton onClick={remove} icon={<TrashIcon />} aria-label="削除" variant="ghost" />
             </HStack>
