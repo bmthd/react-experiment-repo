@@ -10,10 +10,28 @@ export const FieldArray = <T extends FieldMetadata<Item[]>, Item>({
 }: {
   field: T;
   children: (props: {
+    /**
+     * フィールドのメタデータ
+     * @see {@link FieldMetadata}
+     */
     field: ReturnType<T["getFieldList"]>[number];
+    /**
+     * フィールドのインデックス
+     */
     index: number;
+    /**
+     * フィールド追加用の関数
+     * @param defaultValue 追加した際のデフォルト値
+     * @param index 追加対象インデックス
+     */
     insert: (defaultValue?: DefaultValue<Item>, index?: number) => void;
+    /**
+     * フィールドコピー用の関数
+     */
     copy: () => void;
+    /**
+     * フィールド削除用の関数
+     */
     remove: () => void;
   }) => ReactNode;
 }) => {
