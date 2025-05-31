@@ -15,6 +15,7 @@ const links = [
   { label: "クライアント", href: "/inquiry/client" },
   { label: "プロトタイピング", href: "/inquiry/prototype" },
   { label: "依存関係のあるフォーム", href: "/inquiry/dependent" },
+  { label: "再帰的なフォーム", href: "/inquiry/recursive" },
 ] as const satisfies LinkItem[];
 
 export const ConformMenu: FC = () => {
