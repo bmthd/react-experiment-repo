@@ -27,7 +27,7 @@
   "dependencies": {
     "@conform-to/react": "^1.6.1",
     "@conform-to/valibot": "^1.6.1",
-    "@valibot/i18n": "^1.0.0-beta.2",
+    "@valibot/i18n": "^1.0.0",
     "@yamada-ui/lucide": "^1.10.3",
     "@yamada-ui/markdown": "^1.1.1",
     "@yamada-ui/react": "^1.7.4",
