@@ -25,13 +25,13 @@
     "depcheck": "bunx knip"
   },
   "dependencies": {
-    "@conform-to/react": "^1.2.2",
+    "@conform-to/react": "^1.6.1",
+    "@conform-to/valibot": "^1.6.1",
     "@valibot/i18n": "^1.0.0-beta.2",
     "@yamada-ui/lucide": "^1.10.3",
     "@yamada-ui/markdown": "^1.1.1",
     "@yamada-ui/react": "^1.7.4",
     "@yamada-ui/table": "^1.3.11",
-    "conform-to-valibot": "^1.13.0",
     "jotai": "^2.11.0",
     "next": "15.1.6",
     "nodemailer": "^6.10.0",
@@ -39,8 +39,8 @@
     "react-dom": "^19.1.0",
     "remeda": "^2.20.0",
     "server-only": "^0.0.1",
-    "valibot": "^1.0.0-rc.0",
-    "valibot-env": "^0.2.0"
+    "valibot": "^1.1.0",
+    "valibot-env": "^0.2.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

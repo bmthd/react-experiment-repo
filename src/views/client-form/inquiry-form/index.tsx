@@ -1,8 +1,8 @@
 "use client";
 import { Form, TextareaField, TextField } from "@/ui/form";
 import FormDebug from "@/ui/form/debug";
+import { parseWithValibot } from "@conform-to/valibot";
 import { Button, HStack, VStack } from "@yamada-ui/react";
-import { parseWithValibot } from "conform-to-valibot";
 import { FC, MouseEventHandler, useCallback } from "react";
 import { inquiryFormSchema } from "../schema";
 

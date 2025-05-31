@@ -6,8 +6,8 @@ import {
   getFormProps,
   useForm,
 } from "@conform-to/react";
+import { getValibotConstraint, parseWithValibot } from "@conform-to/valibot";
 import { ui, UIProps } from "@yamada-ui/react";
-import { getValibotConstraint, parseWithValibot } from "conform-to-valibot";
 import { JSX, ReactNode, type ComponentProps } from "react";
 import * as v from "valibot";
 import { type GenericSchema } from "valibot";

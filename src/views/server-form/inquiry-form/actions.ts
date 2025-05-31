@@ -3,7 +3,7 @@
 import { FormState } from "@/ui/form";
 import { env } from "@/utils/env";
 import { sendMailFromAdmin } from "@/utils/mail";
-import { parseWithValibot } from "conform-to-valibot";
+import { parseWithValibot } from "@conform-to/valibot";
 import { InquiryFormInput, inquiryFormSchema } from "../schema";
 
 const adminAddress = env.GMAIL_ADDRESS;
