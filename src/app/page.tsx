@@ -1,3 +1,3 @@
-export default function Home() {
-  return <>実験用サイト</>;
-}
+import { AboutPage } from "@/views/about";
+
+export default AboutPage;

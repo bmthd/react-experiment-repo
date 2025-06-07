@@ -11,8 +11,9 @@ type LinkItem = {
 };
 
 const links = [
+  { label: "このサイトは？", href: "/" },
   { label: "お問い合わせフォームの例", href: "/inquiry" },
-  { label: "このサイトは？", href: "/about" },
+  { label: "CSVデータを型安全に扱う", href: "/csv" },
 ] as const satisfies LinkItem[];
 
 export const Navigation: FC = () => {
