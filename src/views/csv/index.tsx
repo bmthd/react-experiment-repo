@@ -14,6 +14,7 @@ export const CSVPage = () => {
   const papaResult = papa.parse(csvString, {
     header: true,
     skipEmptyLines: true,
+    dynamicTyping: true,
   });
   const validationResult = v.safeParse(csvSchema, papaResult.data);
 
@@ -33,15 +34,13 @@ export const CSVPage = () => {
   );
 };
 
-const toNumberSchema = v.pipe(v.string(), v.decimal(), v.transform(Number));
-
 const csvSchema = v.array(
   v.object({
     itemId: v.string(),
     productName: v.string(),
     category: v.string(),
-    unitPrice: toNumberSchema,
-    salesCount: toNumberSchema,
+    unitPrice: v.number(),
+    salesCount: v.number(),
     saleDate: v.string(),
   }),
 );
