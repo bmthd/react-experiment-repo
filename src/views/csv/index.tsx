@@ -16,7 +16,7 @@ export const CSVPage = () => {
     skipEmptyLines: true,
     dynamicTyping: true,
   });
-  const validationResult = v.safeParse(csvSchema, papaResult.data);
+  const validationResult = v.safeParse(v.array(salesDataSchema), papaResult.data);
 
   return (
     <Container bg="white" roundedTop={0} p={4}>
@@ -34,21 +34,19 @@ export const CSVPage = () => {
   );
 };
 
-const csvSchema = v.array(
-  v.object({
-    itemId: v.string(),
-    productName: v.string(),
-    category: v.string(),
-    unitPrice: v.number(),
-    salesCount: v.number(),
-    saleDate: v.string(),
-  }),
-);
+const salesDataSchema = v.object({
+  itemId: v.string(),
+  productName: v.string(),
+  category: v.string(),
+  unitPrice: v.number(),
+  salesCount: v.number(),
+  saleDate: v.string(),
+});
 
-type CsvData = v.InferOutput<typeof csvSchema>;
+type SalesData = v.InferOutput<typeof salesDataSchema>;
 
-const CSVTable: FC<{ data: CsvData }> = ({ data }) => {
-  const columns: Column<CsvData[number]>[] = [
+const CSVTable: FC<{ data: SalesData[] }> = ({ data }) => {
+  const columns: Column<SalesData>[] = [
     {
       header: "商品ID",
       accessorKey: "itemId",
