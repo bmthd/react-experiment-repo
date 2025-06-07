@@ -20,7 +20,7 @@ export const CSVPage = () => {
   return (
     <Container bg="white" roundedTop={0} p={4}>
       <Heading>CSVデータを型安全に扱う</Heading>
-      <Markdown>{`\`\`\`csv ${csvString}\`\`\``}</Markdown>
+      <Markdown>{`\`\`\`csv\n${csvString}\n\`\`\``}</Markdown>
       <HStack justifyContent="center">
         <ArrowDownIcon fontSize="xxx-large" />
       </HStack>
