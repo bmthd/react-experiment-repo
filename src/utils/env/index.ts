@@ -14,11 +14,13 @@ export const env = createEnv({
     },
     shared: {
       NODE_ENV: v.union([v.literal("development"), v.literal("production"), v.literal("test")]),
+      GA_ID: v.string(),
     },
   },
   values: {
     NODE_ENV: process.env.NODE_ENV,
     GMAIL_ADDRESS: process.env.GMAIL_ADDRESS,
     GMAIL_PASSWORD: process.env.GMAIL_PASSWORD,
+    GA_ID: process.env.NEXT_PUBLIC_GA_ID,
   },
 });

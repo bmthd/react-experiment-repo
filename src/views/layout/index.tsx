@@ -1,4 +1,7 @@
 import { configureValidationSettings } from "@/lib/validation";
+import { env } from "@/utils/env";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Container, Separator } from "@yamada-ui/react";
 import { FC, ReactNode } from "react";
 import { Header } from "./header";
@@ -9,6 +12,8 @@ export const LayoutPage: FC<{ children: ReactNode }> = ({ children }) => {
   configureValidationSettings();
   return (
     <Providers>
+      <Analytics />
+      <GoogleAnalytics gaId={env.GA_ID} />
       <Header />
       <Separator />
       <Navigation />
