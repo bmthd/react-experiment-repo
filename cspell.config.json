@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "dictionaries": ["typescript", "react", "html", "css", "json", "yaml"],
+  "language": "en",
+  "words": [
+    "bun",
+    "biome",
+    "yamada",
+    "papaparse",
+    "valibot",
+    "spada",
+    "remeda",
+    "picklist",
+    "zenn",
+    "ktwr",
+    "bunx",
+    "turbopack",
+    "inputtable"
+  ],
+  "ignorePaths": ["**/node_modules/**", "**/dist/**", "**/build/**"]
+}

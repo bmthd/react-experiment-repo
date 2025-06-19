@@ -14,7 +14,7 @@
     "lint:fix": "biome lint ./src --fix",
     "type:performance": "tsc --generateTrace trace-output --incremental false",
     "type:check": "tsc --noEmit",
-    "spell:check": "cspell . --gitignore --config cspell.config.yaml",
+    "spell:check": "cspell . --gitignore --config cspell.config.json",
     "test": "vitest --coverage",
     "test:check": "vitest run",
     "check:all": "bun run format:check && bun run lint:check && bun run type:check && bun run spell:check && bun run test:check",
@@ -53,6 +53,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@yamada-ui/cli": "^1.2.4",
+    "cspell": "^9.1.1",
     "typescript": "^5.8.3"
   }
 }
