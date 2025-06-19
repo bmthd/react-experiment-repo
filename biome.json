@@ -10,7 +10,6 @@
     "includes": ["**", "!**/node_modules", "!**/bun.lockb", "!**/routeTree.gen.ts"]
   },
   "linter": {
-    "enabled": false,
     "rules": {
       "style": {
         "noParameterAssign": "error",

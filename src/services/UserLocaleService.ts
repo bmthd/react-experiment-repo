@@ -1,4 +1,4 @@
-import { Locale, SUPPORTED_LOCALES } from "@/i18n/resources";
+import { type Locale, SUPPORTED_LOCALES } from "@/i18n/resources";
 import { cookies, headers } from "next/headers";
 
 const COOKIE_KEY = "locale";

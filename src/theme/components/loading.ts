@@ -1,4 +1,4 @@
-import { type ComponentStyle, type LoadingProps } from "@yamada-ui/react";
+import type { ComponentStyle, LoadingProps } from "@yamada-ui/react";
 
 /**
  * Loadingコンポーネントのスタイル定義

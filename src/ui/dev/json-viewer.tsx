@@ -1,5 +1,5 @@
 import { Markdown } from "@yamada-ui/markdown";
-import { FC } from "react";
+import type { FC } from "react";
 
 export const JSONViewer: FC<{ value: unknown }> = ({ value }) => {
   const json = `\`\`\`json\n${JSON.stringify(value, null, 2)}\n\`\`\``;

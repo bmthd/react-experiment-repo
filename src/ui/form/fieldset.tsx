@@ -1,6 +1,6 @@
-import { FieldMetadata } from "@conform-to/react";
-import { Fieldset, FieldsetProps } from "@yamada-ui/react";
-import { ReactNode } from "react";
+import type { FieldMetadata } from "@conform-to/react";
+import { Fieldset, type FieldsetProps } from "@yamada-ui/react";
+import type { ReactNode } from "react";
 
 type FieldObjectProps<
   T extends FieldMetadata<Record<string, any> | undefined, any, any> | undefined,

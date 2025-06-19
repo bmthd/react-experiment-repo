@@ -1,7 +1,7 @@
 import { GithubIcon } from "@yamada-ui/lucide";
 import { Card, Container, Heading, Link, Text } from "@yamada-ui/react";
 import Image from "next/image";
-import { FC, ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 
 const lines = [
   <>
@@ -24,6 +24,7 @@ export const AboutPage: FC = () => {
     <Container as={Card}>
       <Heading>このサイトについて</Heading>
       {lines.map((line, i) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         <Text key={i}>{line}</Text>
       ))}
     </Container>

@@ -1,5 +1,5 @@
-import { DefaultValue, FieldMetadata, useFormMetadata } from "@conform-to/react";
-import { ReactNode, useCallback } from "react";
+import { type DefaultValue, type FieldMetadata, useFormMetadata } from "@conform-to/react";
+import { type ReactNode, useCallback } from "react";
 
 /**
  * Conformの配列のフィールドを子要素に割り当てる
@@ -47,7 +47,7 @@ export const FieldArray = <T extends FieldMetadata<Item[]>, Item>({
       // @ts-expect-error
       form.insert({ name: field.name, defaultValue: item, index: index + 1 });
     },
-    [form, field.name],
+    [form, field.name, field.getFieldList],
   );
   const remove = useCallback(
     (index: number) => form.remove({ name: field.name, index }),

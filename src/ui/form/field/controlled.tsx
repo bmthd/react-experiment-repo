@@ -1,6 +1,6 @@
 "use client";
 import {
-  FieldName,
+  type FieldName,
   getCollectionProps,
   getSelectProps,
   useField,
@@ -11,17 +11,24 @@ import {
   HStack,
   Radio,
   RadioGroup,
-  RadioProps,
+  type RadioProps,
   Select,
-  SelectItem,
-  SelectProps,
+  type SelectItem,
+  type SelectProps,
   ui,
   VisuallyHidden,
 } from "@yamada-ui/react";
-import { ComponentProps, ReactNode, useCallback, useEffect, useMemo, type FC } from "react";
+import {
+  type ComponentProps,
+  type FC,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react";
 import * as R from "remeda";
 import { CustomFormControl } from "./form-control";
-import { type FieldProps } from "./types";
+import type { FieldProps } from "./types";
 import { getFieldErrorProps } from "./utils";
 
 type SelectItems = ReadonlyArray<string> | ReadonlyArray<{ label: ReactNode; value: string }>;
@@ -48,7 +55,7 @@ export const SelectField: FC<SelectFieldProps> = ({
   const [field] = useField(name);
   const { value, change, blur, focus } = useInputControl(field);
 
-  const handleChange = useCallback(handlerAll(change, onChange), [change, onChange]);
+  const handleChange = useCallback(handlerAll(change, onChange), []);
 
   const { defaultValue: _, ...mergedProps } = {
     ...props,
@@ -121,16 +128,17 @@ export const DependentSelectField = <
           onFalse: () => [],
         }),
       ),
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     dependentFieldNames.map((name) => form.value?.[name]),
   );
 
   const { value, change, blur, focus } = useInputControl(field);
 
-  const handleChange = useCallback(handlerAll(change, onChange), [change, onChange]);
+  const handleChange = useCallback(handlerAll(change, onChange), []);
 
   useEffect(() => {
     form.reset({ name });
-  }, [items]);
+  }, [form.reset, name]);
 
   const { defaultValue: _, ...mergedProps } = {
     ...props,

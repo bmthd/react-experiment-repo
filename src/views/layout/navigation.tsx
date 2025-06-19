@@ -3,7 +3,7 @@
 import { Tab, Tabs } from "@yamada-ui/react";
 import Link from "next/link";
 import { usePathname, useSelectedLayoutSegment } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 
 type LinkItem = {
   label: string;

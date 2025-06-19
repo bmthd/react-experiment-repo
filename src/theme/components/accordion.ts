@@ -1,4 +1,4 @@
-import { type AccordionProps, type ComponentMultiStyle } from "@yamada-ui/react";
+import type { AccordionProps, ComponentMultiStyle } from "@yamada-ui/react";
 
 /**
  * AccordionコンポーネントのStyle

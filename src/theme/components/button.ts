@@ -1,4 +1,4 @@
-import { type ButtonProps, type ComponentStyle } from "@yamada-ui/react";
+import type { ButtonProps, ComponentStyle } from "@yamada-ui/react";
 
 /**
  * ボタンコンポーネントのスタイル定義

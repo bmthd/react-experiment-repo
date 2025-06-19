@@ -2,7 +2,7 @@
 
 import { JSONViewer } from "@/ui/dev/json-viewer";
 import { useFormMetadata } from "@conform-to/react";
-import { FC } from "react";
+import type { FC } from "react";
 
 const FormDebug: FC = () => {
   const form = useFormMetadata();

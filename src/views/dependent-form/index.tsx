@@ -1,9 +1,9 @@
 "use client";
 
-import { DependentSelectField, Form, ItemsSelector, ResetButton, SelectField } from "@/ui/form";
+import { DependentSelectField, Form, type ItemsSelector, ResetButton, SelectField } from "@/ui/form";
 import FormDebug from "@/ui/form/debug";
 import { Button, Card, Container, Heading, HStack, Link } from "@yamada-ui/react";
-import { FC } from "react";
+import type { FC } from "react";
 import * as R from "remeda";
 import * as v from "valibot";
 import carList from "./car-list.json";

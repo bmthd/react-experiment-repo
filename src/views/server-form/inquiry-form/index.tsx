@@ -2,7 +2,7 @@
 import { Form, TextareaField, TextField } from "@/ui/form";
 import FormDebug from "@/ui/form/debug";
 import { Button, HStack, VStack } from "@yamada-ui/react";
-import { FC, useActionState } from "react";
+import { type FC, useActionState } from "react";
 import { inquiryFormSchema } from "../schema";
 import { inquiryAction } from "./actions";
 

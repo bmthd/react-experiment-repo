@@ -6,5 +6,5 @@ type Paths<T extends object> = {
   [K in keyof T]: K extends JSONKey ? (T[K] extends object ? Join<K, Paths<T[K]>> : K) : never;
 }[keyof T];
 
-import ja from "./ja.json";
+import type ja from "./ja.json";
 export type i18nKeys = Paths<typeof ja>;

@@ -3,20 +3,20 @@
 import { getInputProps, getTextareaProps, useField } from "@conform-to/react";
 import {
   Checkbox,
-  CheckboxProps,
-  HTMLProps,
+  type CheckboxProps,
+  type HTMLProps,
   Input,
-  InputProps,
+  type InputProps,
   Label,
   NumberInput,
-  NumberInputProps,
+  type NumberInputProps,
   Textarea,
-  TextareaProps,
+  type TextareaProps,
   VisuallyHidden,
 } from "@yamada-ui/react";
-import { ComponentProps, type FC, ReactNode, Ref } from "react";
+import type { ComponentProps, FC, ReactNode, Ref } from "react";
 import { CustomFormControl } from "./form-control";
-import { FieldProps } from "./types";
+import type { FieldProps } from "./types";
 import { getFieldErrorProps } from "./utils";
 
 interface TextFieldProps extends FieldProps<string>, Omit<InputProps, "name"> {

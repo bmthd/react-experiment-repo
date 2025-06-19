@@ -1,5 +1,5 @@
-import { type FieldMetadata } from "@conform-to/react";
-import { type FormControlProps } from "@yamada-ui/react";
+import type { FieldMetadata } from "@conform-to/react";
+import type { FormControlProps } from "@yamada-ui/react";
 
 /**
  * フィールドのエラーに関する情報をConformのMetadataから取得する

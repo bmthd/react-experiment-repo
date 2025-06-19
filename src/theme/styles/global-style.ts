@@ -1,4 +1,4 @@
-import { type UIStyle } from "@yamada-ui/react";
+import type { UIStyle } from "@yamada-ui/react";
 
 /**
  * グローバルスタイル

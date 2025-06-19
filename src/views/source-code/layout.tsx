@@ -3,7 +3,7 @@
 import { Tab, Tabs } from "@yamada-ui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 
 /**
  * 実装とソースコードのタブを提供するレイアウトコンポーネント

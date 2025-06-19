@@ -1,5 +1,5 @@
 import { Card, Container, Heading, Link, Text, VStack } from "@yamada-ui/react";
-import { FC } from "react";
+import type { FC } from "react";
 import { InquiryForm } from "./inquiry-form";
 
 export const InquiryPage: FC = () => {

@@ -1,8 +1,8 @@
 import "server-only";
 
 import { UserLocaleService } from "@/services/UserLocaleService";
-import { i18nKeys } from "./locales";
-import { getNestedValue, isSupportLocale, Locale, RESOURCES } from "./resources";
+import type { i18nKeys } from "./locales";
+import { getNestedValue, isSupportLocale, type Locale, RESOURCES } from "./resources";
 
 /**
  * サーバーサイドでの翻訳関数

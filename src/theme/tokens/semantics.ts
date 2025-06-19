@@ -1,4 +1,4 @@
-import { type ThemeSemantics } from "@yamada-ui/react";
+import type { ThemeSemantics } from "@yamada-ui/react";
 
 /**
  * セマンティックトークンの定義
