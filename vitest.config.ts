@@ -26,6 +26,7 @@ export default defineConfig({
         },
       },
     ],
+    reporters: ["json-summary"],
   },
   resolve: {
     alias: {
