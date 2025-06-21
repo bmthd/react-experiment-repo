@@ -26,7 +26,12 @@ export default defineConfig({
         },
       },
     ],
-    reporters: ["json-summary"],
+    coverage: {
+      provider: "v8",
+      reporter: ["json", "html", "json-summary"],
+      include: ["src/**/*.{ts,tsx}"],
+      exclude: ["**/*.{test,spec}.{ts,tsx}"],
+    },
   },
   resolve: {
     alias: {
