@@ -1,5 +1,5 @@
 import { Container, Heading } from "@yamada-ui/react";
-import { FC } from "react";
+import type { FC } from "react";
 import { RecursiveForm } from "./form";
 import { getSubjects } from "./functions";
 

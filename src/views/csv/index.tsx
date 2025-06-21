@@ -1,11 +1,11 @@
 import { ArrowDownIcon } from "@yamada-ui/lucide";
 import { Markdown } from "@yamada-ui/markdown";
 import { Container, Heading, HStack } from "@yamada-ui/react";
-import { Column, Table } from "@yamada-ui/table";
+import { type Column, Table } from "@yamada-ui/table";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import papa from "papaparse";
-import { FC } from "react";
+import type { FC } from "react";
 import * as v from "valibot";
 
 export const CSVPage = () => {

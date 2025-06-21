@@ -1,5 +1,5 @@
-import { FieldName } from "@conform-to/react";
-import { ReactNode } from "react";
+import type { FieldName } from "@conform-to/react";
+import type { ReactNode } from "react";
 
 /**
  * input要素に入力可能な値の型

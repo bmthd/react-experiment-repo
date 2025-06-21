@@ -1,4 +1,4 @@
-import { type CardProps, type ComponentMultiStyle } from "@yamada-ui/react";
+import type { CardProps, ComponentMultiStyle } from "@yamada-ui/react";
 
 /**
  * Cardコンポーネントのスタイル定義

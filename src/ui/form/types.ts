@@ -1,4 +1,4 @@
-import { SubmissionResult } from "@conform-to/react";
+import type { SubmissionResult } from "@conform-to/react";
 
 export type FormState = Readonly<
   | {

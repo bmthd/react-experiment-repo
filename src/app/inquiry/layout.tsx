@@ -1,5 +1,5 @@
 import { ConformMenu } from "@/views/conform/layout";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export default ({ children }: { children: ReactNode }) => {
   return (

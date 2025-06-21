@@ -1,4 +1,4 @@
-import { type ThemeComponents } from "@yamada-ui/react";
+import type { ThemeComponents } from "@yamada-ui/react";
 import { Accordion } from "./accordion";
 import { Alert } from "./alert";
 import { Button } from "./button";

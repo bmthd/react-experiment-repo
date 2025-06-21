@@ -1,0 +1,108 @@
+name: CI
+
+on: pull_request
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Bun 🥟
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies 📦
+        run: bun install
+      - name: Run format 🖋️
+        run: bun run format:check
+
+  spellcheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Bun 🥟
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies 📦
+        run: bun install
+
+      - name: Run spell check 🔍
+        run: bun run spell:check
+  
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Bun 🥟
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies 📦
+        run: bun install
+
+      - name: Run lint 🧹
+        run: bun run lint:check
+
+  test:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Bun 🥟
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Setup Playwright 🎭
+        run: bunx playwright install
+      - name: Install dependencies 📦
+        run: bun install
+      - name: Run test 🧪
+        run: bun run vitest run --coverage
+      - name: Show coverage
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          working-directory: ${{ env.WORKING_DIRECTORY }}
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Bun 🥟
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies 📦
+        run: bun install
+
+      - name: Copy env file 📄
+        run: cp .env.example .env
+
+      - name: Run build 🏗
+        run: bun run build

@@ -10,7 +10,7 @@ import {
 } from "@/ui/form";
 import FormDebug from "@/ui/form/debug";
 import { FieldObject } from "@/ui/form/fieldset";
-import { DefaultValue, FieldMetadata } from "@conform-to/react";
+import type { DefaultValue, FieldMetadata } from "@conform-to/react";
 import {
   CheckIcon,
   CircleIcon,
@@ -21,9 +21,9 @@ import {
   UsersIcon,
 } from "@yamada-ui/lucide";
 import { Button, Card, CardBody, CardHeader, HStack, Icon, IconButton } from "@yamada-ui/react";
-import { FC, use, useCallback, useState } from "react";
+import { type FC, use, useCallback, useState } from "react";
 import * as v from "valibot";
-import { Subject } from "./employees";
+import type { Subject } from "./employees";
 import { getObjects } from "./functions";
 import { SubjectContext } from "./store";
 

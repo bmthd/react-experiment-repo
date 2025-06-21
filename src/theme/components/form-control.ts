@@ -1,4 +1,4 @@
-import { type ComponentMultiStyle, type FormControlProps } from "@yamada-ui/react";
+import type { ComponentMultiStyle, FormControlProps } from "@yamada-ui/react";
 
 /**
  * FormControlコンポーネントのスタイル定義

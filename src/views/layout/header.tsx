@@ -1,6 +1,6 @@
 import { Heading, HStack } from "@yamada-ui/react";
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 
 export const Header: FC = () => {
   return (

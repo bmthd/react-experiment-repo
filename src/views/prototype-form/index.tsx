@@ -1,6 +1,6 @@
 import { Form, TextareaField, TextField } from "@/ui/form";
 import { Button, Card, Container, Heading, HStack, Link, Text, VStack } from "@yamada-ui/react";
-import { FC } from "react";
+import type { FC } from "react";
 
 export const PrototypeFormPage: FC = () => {
   return (

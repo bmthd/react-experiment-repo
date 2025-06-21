@@ -1,4 +1,4 @@
-import { type ComponentMultiStyle, type FieldsetProps } from "@yamada-ui/react";
+import type { ComponentMultiStyle, FieldsetProps } from "@yamada-ui/react";
 
 /**
  * Fieldsetコンポーネントのスタイル定義

@@ -1,9 +1,8 @@
-import "server-only";
-
 import { Markdown } from "@yamada-ui/markdown";
-import { FC } from "@yamada-ui/react";
-import fs from "fs";
-import path from "path";
+import type { FC } from "@yamada-ui/react";
+import fs from "node:fs";
+import path from "node:path";
+import "server-only";
 
 export const getSourceCode = (file: string) => {
   const code = path.join(process.cwd(), file);

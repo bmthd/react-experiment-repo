@@ -3,7 +3,7 @@ import { ChevronDownIcon } from "@yamada-ui/lucide";
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@yamada-ui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 
 type LinkItem = {
   label: string;

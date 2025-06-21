@@ -1,4 +1,4 @@
-import { type ComponentStyle, type RadioProps } from "@yamada-ui/react";
+import type { ComponentStyle, RadioProps } from "@yamada-ui/react";
 
 /**
  * ラジオボタンコンポーネントのスタイル定義

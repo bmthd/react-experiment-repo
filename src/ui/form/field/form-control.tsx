@@ -1,5 +1,5 @@
 import { ErrorMessage, FormControl, Grid, Label, SlideFade, Tag } from "@yamada-ui/react";
-import { type ComponentProps, type FC } from "react";
+import type { ComponentProps, FC } from "react";
 
 /**
  * ラベルとエラーメッセージを紐付けたフォームコントロール

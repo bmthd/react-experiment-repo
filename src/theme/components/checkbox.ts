@@ -1,4 +1,4 @@
-import { type CheckboxProps, type ComponentStyle } from "@yamada-ui/react";
+import type { CheckboxProps, ComponentStyle } from "@yamada-ui/react";
 
 /**
  * チェックボックスコンポーネントのスタイル定義

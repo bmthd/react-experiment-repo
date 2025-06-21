@@ -1,4 +1,4 @@
-import { type ComponentStyle, type HeadingProps } from "@yamada-ui/react";
+import type { ComponentStyle, HeadingProps } from "@yamada-ui/react";
 
 /**
  * Headingコンポーネントのスタイル定義

@@ -1,4 +1,4 @@
-import { type TextStyles } from "@yamada-ui/react";
+import type { TextStyles } from "@yamada-ui/react";
 
 /**
  * テキストスタイルの定義

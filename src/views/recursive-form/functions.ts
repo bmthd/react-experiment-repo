@@ -1,6 +1,6 @@
 "use server";
 
-import { Subject } from "./employees";
+import type { Subject } from "./employees";
 import employees from "./employees.json";
 
 export const getSubjects = async () => {

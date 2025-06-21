@@ -1,4 +1,4 @@
-import { type ComponentMultiStyle, type InputProps } from "@yamada-ui/react";
+import type { ComponentMultiStyle, InputProps } from "@yamada-ui/react";
 
 /**
  * Inputコンポーネントのスタイル定義
