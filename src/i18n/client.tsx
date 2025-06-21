@@ -2,7 +2,13 @@
 
 import { createContext, useCallback, useContext } from "react";
 import type { i18nKeys } from "./locales";
-import { DEFAULT_LOCALE, getNestedValue, isSupportLocale, type Locale, RESOURCES } from "./resources";
+import {
+  DEFAULT_LOCALE,
+  getNestedValue,
+  isSupportLocale,
+  type Locale,
+  RESOURCES,
+} from "./resources";
 
 const LocaleContext = createContext<Locale>(DEFAULT_LOCALE);
 
