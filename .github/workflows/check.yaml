@@ -76,6 +76,8 @@ jobs:
           bun-version: latest
       - name: Setup Playwright 🎭
         run: bunx playwright install
+      - name: Install dependencies 📦
+        run: bun install
       - name: Run test 🧪
         run: bun run vitest run --coverage
       - name: Show coverage
