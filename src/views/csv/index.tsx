@@ -1,7 +1,7 @@
 import { ArrowDownIcon } from "@yamada-ui/lucide";
 import { Markdown } from "@yamada-ui/markdown";
-import { Container, Heading, HStack } from "@yamada-ui/react";
-import { type Column, Table } from "@yamada-ui/table";
+import { Box, Container, Heading, HStack } from "@yamada-ui/react";
+import { type Column, Table, TableProps } from "@yamada-ui/table";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import papa from "papaparse";
@@ -26,7 +26,9 @@ export const CSVPage = () => {
         <ArrowDownIcon fontSize="xxx-large" />
       </HStack>
       {validationResult.success ? (
-        <CSVTable data={validationResult.output} />
+        <Box overflowX="auto" w="full">
+          <CSVTable data={validationResult.output} whiteSpace="nowrap" />
+        </Box>
       ) : (
         <pre>{JSON.stringify(validationResult.issues, null, 2)}</pre>
       )}
@@ -45,7 +47,7 @@ const salesDataSchema = v.object({
 
 type SalesData = v.InferOutput<typeof salesDataSchema>;
 
-const CSVTable: FC<{ data: SalesData[] }> = ({ data }) => {
+const CSVTable: FC<{ data: SalesData[] } & Omit<TableProps<SalesData>,"columns">> = ({ data, ...props }) => {
   const columns: Column<SalesData>[] = [
     {
       header: "商品ID",
@@ -72,5 +74,5 @@ const CSVTable: FC<{ data: SalesData[] }> = ({ data }) => {
       accessorKey: "saleDate",
     },
   ];
-  return <Table {...{ data, columns }} />;
+  return <Table {...{ data, columns }} {...props} />;
 };
