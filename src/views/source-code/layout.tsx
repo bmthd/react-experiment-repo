@@ -3,6 +3,7 @@
 import { Tab, Tabs } from "@yamada-ui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { Route } from "next";
 import type { FC } from "react";
 
 /**
@@ -19,7 +20,7 @@ export const TabLayout: FC = () => {
   return (
     <Tabs index={index} fitted bg="white" roundedTop="md" mb="-8">
       {tabs.map((tab) => (
-        <Tab as={Link} key={tab.href} href={tab.href}>
+        <Tab as={Link} key={tab.href} href={tab.href as Route}>
           {tab.label}
         </Tab>
       ))}
