@@ -106,3 +106,25 @@ jobs:
 
       - name: Run build 🏗
         run: bun run build
+
+  routes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Bun 🥟
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies 📦
+        run: bun install
+
+      - name: Copy env file 📄
+        run: cp .env.example .env
+
+      - name: Run routes check 🛣️
+        run: bun run routes:check
