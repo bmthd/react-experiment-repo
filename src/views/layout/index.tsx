@@ -13,7 +13,7 @@ export const LayoutPage: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <Providers>
       <Analytics />
-      <GoogleAnalytics gaId={env.GA_ID} />
+      <GoogleAnalytics gaId={env.NEXT_PUBLIC_GA_ID} />
       <Header />
       <Separator />
       <Navigation />
