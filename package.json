@@ -28,6 +28,7 @@
     "@conform-to/react": "^1.7.2",
     "@conform-to/valibot": "^1.7.2",
     "@next/third-parties": "^15.3.4",
+    "@t3-oss/env-nextjs": "^0.13.8",
     "@valibot/i18n": "^1.0.0",
     "@vercel/analytics": "^1.5.0",
     "@yamada-ui/lucide": "^1.10.5",
@@ -42,8 +43,7 @@
     "react-dom": "^19.1.0",
     "remeda": "^2.23.0",
     "server-only": "^0.0.1",
-    "valibot": "^1.1.0",
-    "valibot-env": "^0.2.1"
+    "valibot": "^1.1.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.4",
