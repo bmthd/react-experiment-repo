@@ -1,7 +1,7 @@
 import { ArrowDownIcon } from "@yamada-ui/lucide";
 import { Markdown } from "@yamada-ui/markdown";
 import { Box, Container, Heading, HStack } from "@yamada-ui/react";
-import { type Column, Table, TableProps } from "@yamada-ui/table";
+import { type Column, Table, type TableProps } from "@yamada-ui/table";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import papa from "papaparse";
