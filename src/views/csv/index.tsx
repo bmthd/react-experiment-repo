@@ -47,7 +47,10 @@ const salesDataSchema = v.object({
 
 type SalesData = v.InferOutput<typeof salesDataSchema>;
 
-const CSVTable: FC<{ data: SalesData[] } & Omit<TableProps<SalesData>,"columns">> = ({ data, ...props }) => {
+const CSVTable: FC<{ data: SalesData[] } & Omit<TableProps<SalesData>, "columns">> = ({
+  data,
+  ...props
+}) => {
   const columns: Column<SalesData>[] = [
     {
       header: "商品ID",
