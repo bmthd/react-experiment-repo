@@ -85,6 +85,27 @@ jobs:
         with:
           working-directory: ${{ env.WORKING_DIRECTORY }}
 
+  typecheck:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Bun 🥟
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies 📦
+        run: bun install
+
+      - name: Run type check 🔎
+        run: bun run type:check
+
   build:
     runs-on: ubuntu-latest
 
