@@ -58,7 +58,7 @@
     "@yamada-ui/cli": "^1.2.4",
     "cspell": "^9.1.1",
     "playwright": "^1.53.1",
-    "typescript": "^5.8.3",
+    "typescript": "^6.0.0",
     "vitest": "^3.2.4",
     "vitest-browser-react": "^1.0.0"
   }
