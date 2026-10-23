@@ -2,5 +2,30 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "description": "Group vitest with its companion packages outside the vitest monorepo",
+      "matchPackageNames": [
+        "vitest",
+        "@vitest/**",
+        "vitest-browser-react"
+      ],
+      "groupName": "vitest"
+    },
+    {
+      "description": "Group all Yamada UI packages",
+      "matchPackageNames": [
+        "@yamada-ui/**"
+      ],
+      "groupName": "yamada-ui"
+    },
+    {
+      "description": "Group GitHub Actions updates",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "groupName": "github actions"
+    }
   ]
 }
