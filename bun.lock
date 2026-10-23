@@ -17,7 +17,7 @@
         "@yamada-ui/table": "^1.3.14",
         "jotai": "^2.12.5",
         "next": "16.4.3",
-        "nodemailer": "^8.0.0",
+        "nodemailer": "^10.0.0",
         "papaparse": "^5.5.3",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
@@ -1221,7 +1221,7 @@
 
     "node-fetch": ["node-fetch@2.7.0", "https://npm.flatt.tech/node-fetch/-/node-fetch-2.7.0.tgz", { "dependencies": { "whatwg-url": "^5.0.0" }, "peerDependencies": { "encoding": "^0.1.0" }, "optionalPeers": ["encoding"] }, "sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A=="],
 
-    "nodemailer": ["nodemailer@8.0.4", "https://npm.flatt.tech/nodemailer/-/nodemailer-8.0.4.tgz", {}, "sha512-k+jf6N8PfQJ0Fe8ZhJlgqU5qJU44Lpvp2yvidH3vp1lPnVQMgi4yEEMPXg5eJS1gFIJTVq1NHBk7Ia9ARdSBdQ=="],
+    "nodemailer": ["nodemailer@10.2.1", "", {}, "sha512-ZrDNsPFoDMwefNs7sJwrYiEJ/CG4ClJWDZv05iNJsEBWa8GRDry1QJHTJxsuTAY9eDDKjX4k+q3SxslXJOao7w=="],
 
     "object-assign": ["object-assign@4.1.1", "https://npm.flatt.tech/object-assign/-/object-assign-4.1.1.tgz", {}, "sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg=="],
 
