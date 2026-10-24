@@ -28,8 +28,8 @@ export const ConformMenu: FC = () => {
       </Menu.Trigger>
       <Menu.Content>
         {links.map(({ label, href }) => (
-          <Menu.Item asChild key={href}>
-            <Link href={href}>{label}</Link>
+          <Menu.Item as={Link} key={href} href={href}>
+            {label}
           </Menu.Item>
         ))}
       </Menu.Content>
