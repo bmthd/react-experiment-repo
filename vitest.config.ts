@@ -1,3 +1,4 @@
+import { playwright } from "@vitest/browser-playwright";
 import react from "@vitejs/plugin-react";
 import "react";
 import { defineConfig } from "vitest/config";
@@ -20,7 +21,7 @@ export default defineConfig({
           name: "browser",
           browser: {
             enabled: true,
-            provider: "playwright",
+            provider: playwright(),
             instances: [{ browser: "chromium" }],
           },
         },
