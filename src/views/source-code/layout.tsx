@@ -1,6 +1,6 @@
 "use client";
 
-import { Tab, Tabs } from "@yamada-ui/react";
+import { Tabs } from "@yamada-ui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { FC } from "react";
@@ -17,12 +17,14 @@ export const TabLayout: FC = () => {
   ];
   const index = tabs.findIndex((tab) => tab.href === pathname);
   return (
-    <Tabs index={index} fitted bg="white" roundedTop="md" mb="-8">
-      {tabs.map((tab) => (
-        <Tab as={Link} key={tab.href} href={tab.href}>
-          {tab.label}
-        </Tab>
-      ))}
-    </Tabs>
+    <Tabs.Root index={index} fitted bg="white" roundedTop="md" mb="-8">
+      <Tabs.List>
+        {tabs.map((tab, i) => (
+          <Tabs.Tab asChild index={i} key={tab.href}>
+            <Link href={tab.href}>{tab.label}</Link>
+          </Tabs.Tab>
+        ))}
+      </Tabs.List>
+    </Tabs.Root>
   );
 };

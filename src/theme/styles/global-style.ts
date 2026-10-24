@@ -1,10 +1,10 @@
-import type { UIStyle } from "@yamada-ui/react";
+import type { CSSObject } from "@yamada-ui/react";
 
 /**
  * グローバルスタイル
  */
-export const globalStyle: UIStyle = {
+export const globalStyle = {
   body: {
     bg: "body",
   },
-};
+} satisfies CSSObject;

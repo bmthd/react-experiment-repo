@@ -18,7 +18,9 @@ export const LayoutPage: FC<{ children: ReactNode }> = ({ children }) => {
       <Separator />
       <Navigation />
       <Separator />
-      <Container>{children}</Container>
+      <Container.Root>
+        <Container.Body alignItems="stretch">{children}</Container.Body>
+      </Container.Root>
     </Providers>
   );
 };

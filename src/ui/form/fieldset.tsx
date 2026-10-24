@@ -1,5 +1,5 @@
 import type { FieldMetadata } from "@conform-to/react";
-import { Fieldset, type FieldsetProps } from "@yamada-ui/react";
+import { Fieldset } from "@yamada-ui/react";
 import type { ReactNode } from "react";
 
 type FieldObjectProps<
@@ -10,7 +10,7 @@ type FieldObjectProps<
   children?: T extends FieldMetadata<any>
     ? (props: { field: ReturnType<T["getFieldset"]> }) => ReactNode
     : ReactNode;
-} & Omit<FieldsetProps, "children">;
+} & Omit<Fieldset.RootProps, "children">;
 
 /**
  * Conformの構造化されたfieldを受け取り、Fieldsetに割り当てて表示する
@@ -23,11 +23,11 @@ export const FieldObject = <
   ...props
 }: FieldObjectProps<T>) => {
   return (
-    <Fieldset {...props}>
+    <Fieldset.Root {...props}>
       {/* @ts-expect-error */}
       {field && typeof children === "function"
         ? children({ field: field.getFieldset() })
         : children}
-    </Fieldset>
+    </Fieldset.Root>
   );
 };

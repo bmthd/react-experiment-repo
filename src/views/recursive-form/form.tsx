@@ -12,15 +12,19 @@ import FormDebug from "@/ui/form/debug";
 import { FieldObject } from "@/ui/form/fieldset";
 import type { DefaultValue, FieldMetadata } from "@conform-to/react";
 import {
+  Button,
+  Card,
   CheckIcon,
   CircleIcon,
   CopyIcon,
   EqualIcon,
   EqualNotIcon,
+  HStack,
+  Icon,
+  IconButton,
   TrashIcon,
   UsersIcon,
-} from "@yamada-ui/lucide";
-import { Button, Card, CardBody, CardHeader, HStack, Icon, IconButton } from "@yamada-ui/react";
+} from "@yamada-ui/react";
 import { type FC, use, useCallback, useState } from "react";
 import * as v from "valibot";
 import type { Subject } from "./employees";
@@ -66,8 +70,8 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset, Ruleset>["getF
   }, []);
 
   return (
-    <Card>
-      <CardHeader>
+    <Card.Root>
+      <Card.Header>
         <RadioGroupField
           name={field.condition.name}
           label="条件"
@@ -86,8 +90,8 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset, Ruleset>["getF
             </Button>
           )}
         />
-      </CardHeader>
-      <CardBody>
+      </Card.Header>
+      <Card.Body>
         <FieldArray field={field.rules}>
           {({ field, remove, copy }) => (
             <FieldObject key={field.key} field={field}>
@@ -154,8 +158,8 @@ const RulesetField: FC<{ field: ReturnType<FieldMetadata<Ruleset, Ruleset>["getF
         >
           条件グループを追加
         </AddArrayItemButton>
-      </CardBody>
-    </Card>
+      </Card.Body>
+    </Card.Root>
   );
 };
 

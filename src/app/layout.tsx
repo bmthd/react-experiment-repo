@@ -16,11 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
-      <head>
+    <html lang="ja" suppressHydrationWarning>
+      <body className={font.className} suppressHydrationWarning>
         <ColorModeScript />
-      </head>
-      <body className={font.className}>
         <LayoutPage>{children}</LayoutPage>
       </body>
     </html>

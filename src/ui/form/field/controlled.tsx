@@ -13,19 +13,10 @@ import {
   RadioGroup,
   type RadioProps,
   Select,
-  type SelectItem,
-  type SelectProps,
-  ui,
+  styled,
   VisuallyHidden,
 } from "@yamada-ui/react";
-import {
-  type ComponentProps,
-  type FC,
-  type ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-} from "react";
+import { type FC, type ReactNode, useCallback, useEffect, useMemo } from "react";
 import * as R from "remeda";
 import { CustomFormControl } from "./form-control";
 import type { FieldProps } from "./types";
@@ -33,7 +24,7 @@ import { getFieldErrorProps } from "./utils";
 
 type SelectItems = ReadonlyArray<string> | ReadonlyArray<{ label: ReactNode; value: string }>;
 
-const convertItems = (items: SelectItems): SelectItem[] =>
+const convertItems = (items: SelectItems): Select.Item[] =>
   items.map((item) => {
     if (typeof item === "string") {
       return { label: item, value: item };
@@ -41,7 +32,7 @@ const convertItems = (items: SelectItems): SelectItem[] =>
     return item;
   });
 
-interface SelectFieldProps extends FieldProps<string>, Omit<SelectProps, "name" | "items"> {
+interface SelectFieldProps extends FieldProps<string>, Omit<Select.RootProps, "name" | "items"> {
   items?: SelectItems;
 }
 
@@ -57,7 +48,11 @@ export const SelectField: FC<SelectFieldProps> = ({
 
   const handleChange = useCallback(handlerAll(change, onChange), []);
 
-  const { defaultValue: _, ...mergedProps } = {
+  const {
+    defaultValue: _,
+    multiple: __,
+    ...mergedProps
+  } = {
     ...props,
     ...getSelectProps(field, { value: false }),
   };
@@ -65,7 +60,7 @@ export const SelectField: FC<SelectFieldProps> = ({
   const items = useMemo(() => convertItems(props.items ?? []), [props.items]);
   return (
     <CustomFormControl {...{ label, helperMessage }} {...getFieldErrorProps(field)}>
-      <Select
+      <Select.Root
         value={value}
         onChange={handleChange}
         onBlur={blur}
@@ -89,7 +84,7 @@ type DependentSelectFieldProps<
   Dependent extends FieldName<DependentValue, Schema, string[]>[],
   DependentValue extends { [K in Dependent[number]]: Schema[K] },
 > = FieldProps<string> &
-  Omit<SelectProps, "name" | "items"> & {
+  Omit<Select.RootProps, "name" | "items"> & {
     name: FieldName<string, Schema, string[]>;
     dependentFieldNames: Dependent;
     itemsSelector: ItemsSelector<DependentValue>;
@@ -112,7 +107,7 @@ export const DependentSelectField = <
   ...props
 }: DependentSelectFieldProps<Schema, Dependent, DependentValue>) => {
   const [field, form] = useField<string, Schema, string[]>(name);
-  const items = useMemo<SelectItem[]>(
+  const items = useMemo<Select.Item[]>(
     () =>
       R.pipe(
         dependentFieldNames,
@@ -140,13 +135,17 @@ export const DependentSelectField = <
     form.reset({ name });
   }, [form.reset, name]);
 
-  const { defaultValue: _, ...mergedProps } = {
+  const {
+    defaultValue: _,
+    multiple: __,
+    ...mergedProps
+  } = {
     ...props,
     ...getSelectProps(field, { value: false }),
   };
   return (
     <CustomFormControl {...{ label, helperMessage }} {...getFieldErrorProps(field)}>
-      <Select
+      <Select.Root
         value={value}
         onChange={handleChange}
         onBlur={blur}
@@ -162,7 +161,7 @@ export const DependentSelectField = <
 
 interface RadioGroupFieldProps
   extends FieldProps<string>,
-    Omit<ComponentProps<typeof RadioGroup>, "name" | "items"> {
+    Omit<RadioGroup.RootProps, "name" | "items"> {
   /** radioのstyleProps */
   radioProps?: Omit<RadioProps, "name">;
   /** radio groupの選択肢 */
@@ -189,20 +188,22 @@ export const RadioGroupField: FC<RadioGroupFieldProps> = ({
 
   return (
     <CustomFormControl {...{ label, helperMessage }} {...getFieldErrorProps(fieldMeta)}>
-      <RadioGroup defaultValue={fieldMeta?.initialValue} {...props}>
+      <RadioGroup.Root defaultValue={fieldMeta?.initialValue} {...props}>
         <HStack>
           {fields.map((field, index) =>
             render ? (
-              <ui.label htmlFor={field.id} key={field.key}>
+              <styled.label htmlFor={field.id} key={field.key}>
                 <VisuallyHidden as="input" {...field} {...radioProps} key={field.key} />
                 {render({ label: labels[index], checked: fieldMeta.value === field.value })}
-              </ui.label>
+              </styled.label>
             ) : (
-              <Radio {...field} label={labels[index]} {...radioProps} key={field.key} />
+              <Radio {...field} {...radioProps} key={field.key}>
+                {labels[index]}
+              </Radio>
             ),
           )}
         </HStack>
-      </RadioGroup>
+      </RadioGroup.Root>
     </CustomFormControl>
   );
 };

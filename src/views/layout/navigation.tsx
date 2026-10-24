@@ -1,6 +1,6 @@
 "use client";
 
-import { Tab, Tabs } from "@yamada-ui/react";
+import { Tabs } from "@yamada-ui/react";
 import Link from "next/link";
 import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import type { FC } from "react";
@@ -21,12 +21,14 @@ export const Navigation: FC = () => {
   const segment = useSelectedLayoutSegment();
   const index = links.findIndex(({ href }) => href === pathname || href.includes(`${segment}`));
   return (
-    <Tabs index={index} bg="gray.100">
-      {links.map(({ label, href }) => (
-        <Tab as={Link} key={href} href={href}>
-          {label}
-        </Tab>
-      ))}
-    </Tabs>
+    <Tabs.Root index={index} bg="gray.100">
+      <Tabs.List>
+        {links.map(({ label, href }, i) => (
+          <Tabs.Tab asChild index={i} key={href}>
+            <Link href={href}>{label}</Link>
+          </Tabs.Tab>
+        ))}
+      </Tabs.List>
+    </Tabs.Root>
   );
 };

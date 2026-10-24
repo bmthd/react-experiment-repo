@@ -1,5 +1,5 @@
 import type { FieldMetadata } from "@conform-to/react";
-import type { FormControlProps } from "@yamada-ui/react";
+import type { Field } from "@yamada-ui/react";
 
 /**
  * フィールドのエラーに関する情報をConformのMetadataから取得する
@@ -14,5 +14,5 @@ export const getFieldErrorProps = <Schema>(
     errorMessage,
     invalid: Boolean(errors),
     required,
-  } as const satisfies FormControlProps;
+  } as const satisfies Field.RootProps;
 };

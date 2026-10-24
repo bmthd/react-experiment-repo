@@ -1,0 +1,6 @@
+{
+  "$schema": "https://yamada-ui.com/registry/v2/config.schema.json",
+  "theme": { "path": "./src/theme" },
+  "format": { "enabled": false },
+  "lint": { "enabled": false }
+}

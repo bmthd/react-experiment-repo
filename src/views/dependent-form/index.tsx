@@ -8,7 +8,7 @@ import {
   SelectField,
 } from "@/ui/form";
 import FormDebug from "@/ui/form/debug";
-import { Button, Card, Container, Heading, HStack, Link } from "@yamada-ui/react";
+import { Button, Card, Heading, HStack, Link } from "@yamada-ui/react";
 import type { FC } from "react";
 import * as R from "remeda";
 import * as v from "valibot";
@@ -69,38 +69,40 @@ const gradeItemsSelector: ItemsSelector<{ manufacturer: Manufacturer; model: str
 
 export const DependsForm: FC = () => {
   return (
-    <Container as={Card} roundedTop={0}>
-      <Heading>依存関係のあるフォーム</Heading>
-      <Form schema={schema} display="contents">
-        {({ field }) => (
-          <>
-            <SelectField label="メーカー" name={field.manufacturer.name} items={manufacturers} />
-            <DependentSelectField
-              label="車種"
-              name={field.model.name}
-              dependentFieldNames={["manufacturer"]}
-              itemsSelector={modelItemsSelector}
-            />
-            <DependentSelectField
-              label="グレード"
-              name={field.grade.name}
-              dependentFieldNames={["manufacturer", "model"]}
-              itemsSelector={gradeItemsSelector}
-            />
-            <HStack justifyContent="space-between">
-              <ResetButton />
-              <Button>送信</Button>
-            </HStack>
-            <FormDebug />
-          </>
-        )}
-      </Form>
-      <Link
-        external
-        href="https://github.com/bmthd/react-experiment-repo/blob/master/src/views/dependent-form/index.tsx"
-      >
-        コード
-      </Link>
-    </Container>
+    <Card.Root roundedTop={0}>
+      <Card.Body alignItems="stretch">
+        <Heading>依存関係のあるフォーム</Heading>
+        <Form schema={schema} display="contents">
+          {({ field }) => (
+            <>
+              <SelectField label="メーカー" name={field.manufacturer.name} items={manufacturers} />
+              <DependentSelectField
+                label="車種"
+                name={field.model.name}
+                dependentFieldNames={["manufacturer"]}
+                itemsSelector={modelItemsSelector}
+              />
+              <DependentSelectField
+                label="グレード"
+                name={field.grade.name}
+                dependentFieldNames={["manufacturer", "model"]}
+                itemsSelector={gradeItemsSelector}
+              />
+              <HStack justifyContent="space-between">
+                <ResetButton />
+                <Button>送信</Button>
+              </HStack>
+              <FormDebug />
+            </>
+          )}
+        </Form>
+        <Link
+          external
+          href="https://github.com/bmthd/react-experiment-repo/blob/master/src/views/dependent-form/index.tsx"
+        >
+          コード
+        </Link>
+      </Card.Body>
+    </Card.Root>
   );
 };
