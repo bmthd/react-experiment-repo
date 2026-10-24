@@ -1,3 +1,3 @@
-import { semantics } from "@/theme/tokens/semantics";
+import { semanticTokens } from "@/theme/tokens/semantic-tokens";
 
-export default { semantics };
+export default { semanticTokens };

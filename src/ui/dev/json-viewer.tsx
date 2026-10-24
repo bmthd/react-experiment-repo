@@ -1,7 +1,6 @@
-import { Markdown } from "@yamada-ui/markdown";
+import { CodeBlock } from "@/ui/code-block";
 import type { FC } from "react";
 
 export const JSONViewer: FC<{ value: unknown }> = ({ value }) => {
-  const json = `\`\`\`json\n${JSON.stringify(value, null, 2)}\n\`\`\``;
-  return <Markdown codeProps={{ theme: "vscDarkPlus" }}>{json}</Markdown>;
+  return <CodeBlock code={JSON.stringify(value, null, 2)} language="json" />;
 };

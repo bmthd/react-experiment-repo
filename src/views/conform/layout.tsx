@@ -1,6 +1,5 @@
 "use client";
-import { ChevronDownIcon } from "@yamada-ui/lucide";
-import { Button, Menu, MenuButton, MenuItem, MenuList } from "@yamada-ui/react";
+import { Button, ChevronDownIcon, Menu } from "@yamada-ui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { FC } from "react";
@@ -21,17 +20,19 @@ const links = [
 export const ConformMenu: FC = () => {
   const pathname = usePathname();
   return (
-    <Menu>
-      <MenuButton as={Button} endIcon={<ChevronDownIcon />} colorScheme="gray" w="16rem">
-        {links.find(({ href }) => href === pathname)?.label ?? "選択"}
-      </MenuButton>
-      <MenuList>
+    <Menu.Root>
+      <Menu.Trigger asChild>
+        <Button endIcon={<ChevronDownIcon />} colorScheme="gray" w="16rem">
+          {links.find(({ href }) => href === pathname)?.label ?? "選択"}
+        </Button>
+      </Menu.Trigger>
+      <Menu.Content>
         {links.map(({ label, href }) => (
-          <Link key={href} href={href}>
-            <MenuItem>{label}</MenuItem>
-          </Link>
+          <Menu.Item asChild key={href}>
+            <Link href={href}>{label}</Link>
+          </Menu.Item>
         ))}
-      </MenuList>
-    </Menu>
+      </Menu.Content>
+    </Menu.Root>
   );
 };

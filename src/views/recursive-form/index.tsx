@@ -6,9 +6,11 @@ import { getSubjects } from "./functions";
 export const RecursiveFormPage: FC = async () => {
   const subjects = await getSubjects();
   return (
-    <Container>
-      <Heading>再帰的なフォーム</Heading>
-      <RecursiveForm subjects={subjects} />
-    </Container>
+    <Container.Root>
+      <Container.Body alignItems="stretch">
+        <Heading>再帰的なフォーム</Heading>
+        <RecursiveForm subjects={subjects} />
+      </Container.Body>
+    </Container.Root>
   );
 };

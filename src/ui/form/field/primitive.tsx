@@ -7,9 +7,9 @@ import {
   type HTMLProps,
   Input,
   type InputProps,
-  Label,
   NumberInput,
   type NumberInputProps,
+  styled,
   Textarea,
   type TextareaProps,
   VisuallyHidden,
@@ -107,7 +107,7 @@ interface SwitchFieldProps extends FieldProps<boolean>, Omit<HTMLProps<"input">,
 export const CustomSwitchField: FC<SwitchFieldProps> = ({ name = "", children, ...props }) => {
   const [fieldMeta] = useField(name);
   return (
-    <Label>
+    <styled.label htmlFor={fieldMeta.id}>
       <VisuallyHidden
         as="input"
         {...props}
@@ -115,7 +115,7 @@ export const CustomSwitchField: FC<SwitchFieldProps> = ({ name = "", children, .
         key={fieldMeta.key}
       />
       {children}
-    </Label>
+    </styled.label>
   );
 };
 

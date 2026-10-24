@@ -1,7 +1,7 @@
-import { Markdown } from "@yamada-ui/markdown";
-import type { FC } from "@yamada-ui/react";
+import { CodeBlock } from "@/ui/code-block";
 import fs from "node:fs";
 import path from "node:path";
+import type { FC } from "react";
 import "server-only";
 
 export const getSourceCode = (file: string) => {
@@ -10,6 +10,5 @@ export const getSourceCode = (file: string) => {
 };
 
 export const SourceCode: FC<{ code: string }> = ({ code }) => {
-  const tsx = `\`\`\`tsx\n${code}\n\`\`\``;
-  return <Markdown codeProps={{ theme: "vscDarkPlus" }}>{tsx}</Markdown>;
+  return <CodeBlock code={code} language="tsx" />;
 };

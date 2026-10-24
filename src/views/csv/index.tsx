@@ -1,7 +1,13 @@
-import { ArrowDownIcon } from "@yamada-ui/lucide";
-import { Markdown } from "@yamada-ui/markdown";
-import { Box, Container, Heading, HStack } from "@yamada-ui/react";
-import { type Column, Table, type TableProps } from "@yamada-ui/table";
+import { CodeBlock } from "@/ui/code-block";
+import {
+  ArrowDownIcon,
+  Box,
+  Container,
+  Heading,
+  HStack,
+  Table,
+  type TableProps,
+} from "@yamada-ui/react";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import papa from "papaparse";
@@ -19,20 +25,22 @@ export const CSVPage = () => {
   const validationResult = v.safeParse(v.array(salesDataSchema), papaResult.data);
 
   return (
-    <Container bg="white" roundedTop={0} p={4}>
-      <Heading>CSVデータを型安全に扱う</Heading>
-      <Markdown>{`\`\`\`csv\n${csvString}\n\`\`\``}</Markdown>
-      <HStack justifyContent="center">
-        <ArrowDownIcon fontSize="xxx-large" />
-      </HStack>
-      {validationResult.success ? (
-        <Box overflowX="auto" w="full">
-          <CSVTable data={validationResult.output} whiteSpace="nowrap" />
-        </Box>
-      ) : (
-        <pre>{JSON.stringify(validationResult.issues, null, 2)}</pre>
-      )}
-    </Container>
+    <Container.Root bg="white" roundedTop={0} p={4}>
+      <Container.Body alignItems="stretch">
+        <Heading>CSVデータを型安全に扱う</Heading>
+        <CodeBlock code={csvString} language="csv" />
+        <HStack justifyContent="center">
+          <ArrowDownIcon fontSize="xxx-large" />
+        </HStack>
+        {validationResult.success ? (
+          <Box overflowX="auto" w="full" whiteSpace="nowrap">
+            <CSVTable data={validationResult.output} />
+          </Box>
+        ) : (
+          <pre>{JSON.stringify(validationResult.issues, null, 2)}</pre>
+        )}
+      </Container.Body>
+    </Container.Root>
   );
 };
 
@@ -51,31 +59,13 @@ const CSVTable: FC<{ data: SalesData[] } & Omit<TableProps<SalesData>, "columns"
   data,
   ...props
 }) => {
-  const columns: Column<SalesData>[] = [
-    {
-      header: "商品ID",
-      accessorKey: "itemId",
-    },
-    {
-      header: "商品名",
-      accessorKey: "productName",
-    },
-    {
-      header: "カテゴリ",
-      accessorKey: "category",
-    },
-    {
-      header: "単価",
-      accessorKey: "unitPrice",
-    },
-    {
-      header: "販売数",
-      accessorKey: "salesCount",
-    },
-    {
-      header: "販売日",
-      accessorKey: "saleDate",
-    },
+  const columns: TableProps<SalesData>["columns"] = [
+    { header: "商品ID", accessorKey: "itemId" },
+    { header: "商品名", accessorKey: "productName" },
+    { header: "カテゴリ", accessorKey: "category" },
+    { header: "単価", accessorKey: "unitPrice" },
+    { header: "販売数", accessorKey: "salesCount" },
+    { header: "販売日", accessorKey: "saleDate" },
   ];
   return <Table {...{ data, columns }} {...props} />;
 };

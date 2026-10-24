@@ -7,7 +7,7 @@ import {
   useForm,
 } from "@conform-to/react";
 import { getValibotConstraint, parseWithValibot } from "@conform-to/valibot";
-import { ui, type UIProps } from "@yamada-ui/react";
+import { type StyledProps, styled } from "@yamada-ui/react";
 import type { JSX, ReactNode, ComponentProps } from "react";
 import * as v from "valibot";
 import type { GenericSchema } from "valibot";
@@ -59,7 +59,7 @@ interface FormProps<TInput extends Record<string, unknown>, TOutput extends Reco
       ComponentProps<"form">,
       keyof ReturnType<typeof getFormProps> | "children" | "color" | "content" | "translate"
     >,
-    UIProps {
+    StyledProps {
   schema?: GenericSchema<TInput>;
   options?: NoInfer<Parameters<typeof useForm<TInput>>[0]>;
   children?: ((props: FormMeta<TInput, TOutput>) => ReactNode) | ReactNode;
@@ -82,9 +82,9 @@ export const Form = <
 
   return (
     <FormProvider context={form.context}>
-      <ui.form {...props} {...getFormProps(form)}>
+      <styled.form {...props} {...getFormProps(form)}>
         {typeof children === "function" ? children({ form, field }) : children}
-      </ui.form>
+      </styled.form>
       <FormStateInput />
     </FormProvider>
   );

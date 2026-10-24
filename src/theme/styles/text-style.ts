@@ -1,12 +1,12 @@
-import type { TextStyles } from "@yamada-ui/react";
+import { defineStyles } from "@yamada-ui/react";
 
 /**
  * テキストスタイルの定義
  */
-export const textStyles: TextStyles = {
+export const textStyles = defineStyles.textStyle({
   normal: {
-    textColor: "black",
+    color: "black",
     fontSize: "md",
     fontWeight: "normal",
   },
-};
+});

@@ -1,5 +1,4 @@
-import { GithubIcon } from "@yamada-ui/lucide";
-import { Card, Container, Heading, Link, Text } from "@yamada-ui/react";
+import { Card, GitBranchIcon, Heading, Link, Text } from "@yamada-ui/react";
 import Image from "next/image";
 import type { FC, ReactNode } from "react";
 
@@ -14,19 +13,21 @@ const lines = [
     <Link href="https://zenn.dev/bmth">Zenn</Link>
   </>,
   <>
-    <GithubIcon />
+    <GitBranchIcon />
     <Link href="https://github.com/bmthd/react-experiment-repo">このサイトのリポジトリ</Link>
   </>,
 ] as const satisfies ReactNode[];
 
 export const AboutPage: FC = () => {
   return (
-    <Container as={Card}>
-      <Heading>このサイトについて</Heading>
-      {lines.map((line, i) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-        <Text key={i}>{line}</Text>
-      ))}
-    </Container>
+    <Card.Root>
+      <Card.Body alignItems="stretch">
+        <Heading>このサイトについて</Heading>
+        {lines.map((line, i) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+          <Text key={i}>{line}</Text>
+        ))}
+      </Card.Body>
+    </Card.Root>
   );
 };

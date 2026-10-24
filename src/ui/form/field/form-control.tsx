@@ -1,12 +1,12 @@
-import { ErrorMessage, FormControl, Grid, Label, SlideFade, Tag } from "@yamada-ui/react";
-import type { ComponentProps, FC } from "react";
+import { Field, Grid, SlideFade, Tag } from "@yamada-ui/react";
+import type { FC } from "react";
 
 /**
  * ラベルとエラーメッセージを紐付けたフォームコントロール
- * @param props FormControlProps
+ * @param props Field.RootProps
  */
 export const CustomFormControl: FC<
-  ComponentProps<typeof FormControl> & {
+  Field.RootProps & {
     /** ラベルを非表示にする場合に指定 */
     withoutLabel?: boolean;
     /** 必須,任意アイコンを表示にする場合に指定 */
@@ -23,10 +23,18 @@ export const CustomFormControl: FC<
   requireIcon = false,
   ...props
 }) => (
-  <FormControl replace {...props}>
+  <Field.Root replace required={required} {...props}>
     {!withoutLabel && (
       <Grid templateColumns="auto 1fr" alignItems="start" gap={1}>
-        <Label {...labelProps}>{label}</Label>
+        <Field.Label
+          color="black"
+          fontWeight="bold"
+          cursor="auto"
+          textWrap="nowrap"
+          {...labelProps}
+        >
+          {label}
+        </Field.Label>
         {requireIcon && (
           <Tag w="fit-content" size="sm" rounded="md" colorScheme={required ? "red" : "blue"}>
             {required ? "必須" : "任意"}
@@ -36,9 +44,9 @@ export const CustomFormControl: FC<
     )}
     {children}
     <SlideFade open={Boolean(errorMessage)}>
-      <ErrorMessage role="alert" {...errorMessageProps}>
+      <Field.ErrorMessage role="alert" {...errorMessageProps}>
         {errorMessage}
-      </ErrorMessage>
+      </Field.ErrorMessage>
     </SlideFade>
-  </FormControl>
+  </Field.Root>
 );
